@@ -1,0 +1,1251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tuesday Takeover — After Work Anthems</title>
+<meta name="description" content="Wings & Karaoke at hue. Every Tuesday 7PM–11PM. 67 E. Cermak Rd, Chicago IL. RSVP to perform.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Anton&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;0,800;1,600&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --coral:      #F2635A;
+    --coral-hot:  #E8453A;
+    --salmon:     #F08080;
+    --peach:      #FDBCB4;
+    --cream:      #FFF5F0;
+    --dark:       #0D0A09;
+    --dark-mid:   #1A1210;
+    --dark-warm:  #2A1F1C;
+    --white:      #FFFFFF;
+    --white-dim:  rgba(255,255,255,0.72);
+    --white-ghost:rgba(255,255,255,0.12);
+    --tag-bg:     rgba(242,99,90,0.92);
+    --font-display: 'Bebas Neue', sans-serif;
+    --font-heavy:   'Anton', sans-serif;
+    --font-cond:    'Barlow Condensed', sans-serif;
+    --font-body:    'DM Sans', sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--dark);
+    color: var(--white);
+    font-family: var(--font-body);
+    overflow-x: hidden;
+    cursor: default;
+  }
+
+  /* ─── GRAIN OVERLAY ─── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.35;
+  }
+
+  /* ═══════════════════════════════════════════
+     HERO
+  ═══════════════════════════════════════════ */
+  #hero {
+    min-height: 100svh;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 0;
+    overflow: hidden;
+  }
+
+  /* gradient mesh background */
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 70% 20%, rgba(232,69,58,0.55) 0%, transparent 65%),
+      radial-gradient(ellipse 60% 80% at 10% 80%, rgba(240,128,128,0.4) 0%, transparent 60%),
+      radial-gradient(ellipse 100% 100% at 50% 50%, #1A1210 30%, #0D0A09 100%);
+    z-index: 0;
+  }
+
+  /* animated light sweep */
+  .hero-bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(115deg, transparent 30%, rgba(242,99,90,0.08) 50%, transparent 70%);
+    animation: sweep 6s ease-in-out infinite alternate;
+  }
+
+  @keyframes sweep {
+    0%   { transform: translateX(-20%) scaleX(1.2); opacity: 0.5; }
+    100% { transform: translateX(20%) scaleX(1.2);  opacity: 1; }
+  }
+
+  /* big decorative ring */
+  .hero-ring {
+    position: absolute;
+    width: min(700px, 110vw);
+    height: min(700px, 110vw);
+    border-radius: 50%;
+    border: 1px solid rgba(242,99,90,0.15);
+    top: 50%;
+    right: -15%;
+    transform: translateY(-50%);
+    z-index: 1;
+    animation: spin-slow 30s linear infinite;
+  }
+  .hero-ring::before {
+    content: '';
+    position: absolute;
+    inset: 40px;
+    border-radius: 50%;
+    border: 1px solid rgba(242,99,90,0.1);
+  }
+
+  @keyframes spin-slow {
+    to { transform: translateY(-50%) rotate(360deg); }
+  }
+
+  .hero-inner {
+    position: relative;
+    z-index: 2;
+    padding: 40px 5vw 60px;
+    max-width: 1100px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  /* brand badge */
+  .brand-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 28px;
+    animation: fadeUp 0.6s ease both;
+  }
+
+  .brand-badge-line {
+    width: 32px;
+    height: 2px;
+    background: var(--coral);
+  }
+
+  .brand-badge span {
+    font-family: var(--font-cond);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--coral);
+  }
+
+  /* main headline stack */
+  .hero-eyebrow {
+    font-family: var(--font-cond);
+    font-size: clamp(14px, 2vw, 20px);
+    font-weight: 600;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--white-dim);
+    margin-bottom: 8px;
+    animation: fadeUp 0.7s ease 0.1s both;
+  }
+
+  .hero-title {
+    font-family: var(--font-display);
+    font-size: clamp(82px, 15vw, 180px);
+    line-height: 0.88;
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
+    color: var(--white);
+    animation: fadeUp 0.7s ease 0.2s both;
+    position: relative;
+  }
+
+  .hero-title .stroke-text {
+    -webkit-text-stroke: 2px var(--white);
+    color: transparent;
+  }
+
+  .hero-subtitle-tag {
+    display: inline-block;
+    background: var(--tag-bg);
+    padding: 10px 20px;
+    font-family: var(--font-cond);
+    font-size: clamp(18px, 3vw, 28px);
+    font-weight: 800;
+    font-style: italic;
+    letter-spacing: 0.04em;
+    text-transform: lowercase;
+    color: var(--dark);
+    margin: 18px 0 22px;
+    transform: rotate(-1deg);
+    animation: fadeUp 0.7s ease 0.35s both;
+  }
+
+  .hero-details {
+    font-family: var(--font-cond);
+    font-size: clamp(13px, 1.6vw, 17px);
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--white-dim);
+    margin-bottom: 36px;
+    animation: fadeUp 0.7s ease 0.45s both;
+    line-height: 1.8;
+  }
+
+  .hero-details strong {
+    color: var(--white);
+  }
+
+  /* CTA row */
+  .hero-cta {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    flex-wrap: wrap;
+    animation: fadeUp 0.7s ease 0.55s both;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--coral);
+    color: var(--dark);
+    font-family: var(--font-cond);
+    font-size: 16px;
+    font-weight: 800;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 18px 36px;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.2s ease, background 0.2s ease;
+    clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 100%, 12px 100%);
+  }
+
+  .btn-primary::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(255,255,255,0.15);
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+  }
+
+  .btn-primary:hover::before { transform: translateX(0); }
+  .btn-primary:hover { transform: translateY(-2px); background: var(--coral-hot); }
+  .btn-primary:active { transform: translateY(0); }
+
+  .btn-arrow {
+    font-size: 20px;
+    transition: transform 0.2s;
+  }
+  .btn-primary:hover .btn-arrow { transform: translateX(4px); }
+
+  .hero-tagline {
+    font-family: var(--font-cond);
+    font-size: clamp(13px, 1.4vw, 16px);
+    font-style: italic;
+    font-weight: 300;
+    color: var(--white-dim);
+    letter-spacing: 0.08em;
+  }
+
+  /* vertical side text */
+  .side-text {
+    position: absolute;
+    right: 24px;
+    top: 50%;
+    transform: translateY(-50%) rotate(90deg);
+    transform-origin: center;
+    font-family: var(--font-cond);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.25);
+    white-space: nowrap;
+    z-index: 2;
+  }
+
+  /* scroll indicator */
+  .scroll-hint {
+    position: absolute;
+    bottom: 28px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    animation: fadeUp 1s ease 1.2s both;
+  }
+
+  .scroll-hint span {
+    font-family: var(--font-cond);
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.3);
+  }
+
+  .scroll-dot {
+    width: 1px;
+    height: 44px;
+    background: linear-gradient(to bottom, var(--coral), transparent);
+    animation: pulse-line 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse-line {
+    0%, 100% { opacity: 0.4; transform: scaleY(0.7); transform-origin: top; }
+    50%       { opacity: 1;   transform: scaleY(1);   transform-origin: top; }
+  }
+
+  /* ═══════════════════════════════════════════
+     COUNTDOWN
+  ═══════════════════════════════════════════ */
+  #countdown {
+    padding: 80px 5vw;
+    background: var(--dark-warm);
+    position: relative;
+    overflow: hidden;
+  }
+
+  #countdown::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 80% 150% at 50% 50%, rgba(242,99,90,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .section-label {
+    font-family: var(--font-cond);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--coral);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    max-width: 48px;
+    height: 1px;
+    background: var(--coral);
+    opacity: 0.5;
+  }
+
+  .countdown-headline {
+    font-family: var(--font-display);
+    font-size: clamp(36px, 6vw, 72px);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--white);
+    margin-bottom: 48px;
+    line-height: 1;
+  }
+
+  .countdown-headline em {
+    color: var(--coral);
+    font-style: normal;
+  }
+
+  .countdown-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    max-width: 640px;
+  }
+
+  .countdown-block {
+    background: var(--white-ghost);
+    border: 1px solid rgba(242,99,90,0.2);
+    padding: 28px 16px 20px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.3s;
+  }
+
+  .countdown-block:hover {
+    border-color: rgba(242,99,90,0.5);
+  }
+
+  .countdown-block::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(242,99,90,0.06) 0%, transparent 60%);
+  }
+
+  .countdown-num {
+    font-family: var(--font-display);
+    font-size: clamp(48px, 8vw, 80px);
+    line-height: 1;
+    color: var(--white);
+    display: block;
+    position: relative;
+    transition: color 0.15s;
+  }
+
+  .countdown-num.flash {
+    color: var(--coral);
+  }
+
+  .countdown-unit {
+    font-family: var(--font-cond);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+    margin-top: 6px;
+    display: block;
+  }
+
+  .countdown-caption {
+    margin-top: 36px;
+    font-family: var(--font-cond);
+    font-size: clamp(15px, 2vw, 19px);
+    font-style: italic;
+    font-weight: 300;
+    color: var(--white-dim);
+    letter-spacing: 0.06em;
+  }
+
+  /* ═══════════════════════════════════════════
+     DIVIDER MARQUEE
+  ═══════════════════════════════════════════ */
+  .marquee-strip {
+    background: var(--coral);
+    padding: 14px 0;
+    overflow: hidden;
+    white-space: nowrap;
+    position: relative;
+  }
+
+  .marquee-track {
+    display: inline-flex;
+    animation: marquee 18s linear infinite;
+  }
+
+  .marquee-item {
+    font-family: var(--font-display);
+    font-size: 22px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--dark);
+    padding: 0 32px;
+  }
+
+  .marquee-dot {
+    color: rgba(13,10,9,0.4);
+    padding: 0 8px;
+  }
+
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+
+  /* ═══════════════════════════════════════════
+     RSVP FORM
+  ═══════════════════════════════════════════ */
+  #rsvp {
+    padding: 90px 5vw 100px;
+    background: var(--dark);
+    position: relative;
+    overflow: hidden;
+  }
+
+  #rsvp::before {
+    content: '';
+    position: absolute;
+    top: -200px;
+    left: -200px;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(242,99,90,0.07) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  #rsvp::after {
+    content: '';
+    position: absolute;
+    bottom: -100px;
+    right: -100px;
+    width: 400px;
+    height: 400px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(242,99,90,0.05) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .rsvp-inner {
+    max-width: 680px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .rsvp-tagline {
+    font-family: var(--font-display);
+    font-size: clamp(28px, 5vw, 52px);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--white);
+    margin-bottom: 6px;
+    line-height: 1;
+  }
+
+  .rsvp-tagline .accent { color: var(--coral); }
+
+  .rsvp-sub {
+    font-family: var(--font-body);
+    font-size: 15px;
+    font-weight: 300;
+    color: var(--white-dim);
+    margin-bottom: 48px;
+    line-height: 1.6;
+  }
+
+  /* form grid */
+  .form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  .form-field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .form-field.full { grid-column: 1 / -1; }
+
+  label {
+    font-family: var(--font-cond);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+  }
+
+  input, select, textarea {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: var(--white);
+    font-family: var(--font-body);
+    font-size: 15px;
+    font-weight: 400;
+    padding: 16px 18px;
+    outline: none;
+    transition: border-color 0.25s, background 0.25s, box-shadow 0.25s;
+    width: 100%;
+    -webkit-appearance: none;
+    appearance: none;
+  }
+
+  input::placeholder { color: rgba(255,255,255,0.22); }
+
+  input:focus, select:focus {
+    border-color: var(--coral);
+    background: rgba(242,99,90,0.07);
+    box-shadow: 0 0 0 3px rgba(242,99,90,0.12);
+  }
+
+  input.error, select.error {
+    border-color: rgba(232,69,58,0.8);
+    box-shadow: 0 0 0 3px rgba(232,69,58,0.15);
+  }
+
+  /* custom select arrow */
+  .select-wrap {
+    position: relative;
+  }
+
+  .select-wrap::after {
+    content: '▾';
+    position: absolute;
+    right: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--coral);
+    pointer-events: none;
+    font-size: 14px;
+  }
+
+  select { cursor: pointer; }
+
+  select option {
+    background: var(--dark-warm);
+    color: var(--white);
+  }
+
+  .field-error {
+    font-family: var(--font-cond);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    color: var(--coral-hot);
+    margin-top: 2px;
+    display: none;
+  }
+
+  .field-error.visible { display: block; }
+
+  /* submit row */
+  .form-submit-row {
+    margin-top: 32px;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+
+  .btn-submit {
+    font-family: var(--font-cond);
+    font-size: 16px;
+    font-weight: 800;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--dark);
+    background: var(--coral);
+    border: none;
+    padding: 20px 44px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 100%, 14px 100%);
+    transition: background 0.2s, transform 0.2s;
+    flex-shrink: 0;
+  }
+
+  .btn-submit::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(255,255,255,0.15);
+    transform: translateX(-101%);
+    transition: transform 0.3s ease;
+  }
+
+  .btn-submit:hover::before { transform: translateX(0); }
+  .btn-submit:hover { background: var(--coral-hot); transform: translateY(-2px); }
+  .btn-submit:active { transform: translateY(0); }
+  .btn-submit:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+  .privacy-note {
+    font-family: var(--font-body);
+    font-size: 12px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.28);
+    line-height: 1.5;
+  }
+
+  /* ─── SUCCESS STATE ─── */
+  .form-success {
+    display: none;
+    text-align: center;
+    padding: 60px 20px;
+    animation: scaleIn 0.5s cubic-bezier(0.34,1.56,0.64,1) both;
+  }
+
+  .form-success.visible { display: block; }
+
+  @keyframes scaleIn {
+    from { opacity: 0; transform: scale(0.85); }
+    to   { opacity: 1; transform: scale(1); }
+  }
+
+  .success-icon {
+    font-size: 56px;
+    margin-bottom: 20px;
+    display: block;
+    animation: pop 0.5s cubic-bezier(0.34,1.56,0.64,1) 0.2s both;
+  }
+
+  @keyframes pop {
+    from { transform: scale(0); }
+    to   { transform: scale(1); }
+  }
+
+  .success-title {
+    font-family: var(--font-display);
+    font-size: clamp(36px, 6vw, 60px);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--white);
+    margin-bottom: 12px;
+    line-height: 1;
+  }
+
+  .success-msg {
+    font-family: var(--font-body);
+    font-size: 16px;
+    font-weight: 300;
+    color: var(--white-dim);
+    line-height: 1.7;
+    max-width: 460px;
+    margin: 0 auto 32px;
+  }
+
+  .success-msg strong { color: var(--coral); font-weight: 600; }
+
+  /* ═══════════════════════════════════════════
+     FOOTER
+  ═══════════════════════════════════════════ */
+  footer {
+    background: var(--dark-warm);
+    border-top: 1px solid rgba(255,255,255,0.06);
+    padding: 48px 5vw;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .footer-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 32px;
+    flex-wrap: wrap;
+  }
+
+  .footer-brand {
+    font-family: var(--font-display);
+    font-size: 28px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--white);
+    line-height: 1.1;
+  }
+
+  .footer-brand small {
+    display: block;
+    font-family: var(--font-cond);
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    color: var(--coral);
+    font-weight: 700;
+    margin-top: 2px;
+  }
+
+  .footer-details {
+    text-align: right;
+  }
+
+  .footer-details p {
+    font-family: var(--font-cond);
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    color: var(--white-dim);
+    line-height: 1.8;
+  }
+
+  .footer-details a {
+    color: var(--coral);
+    text-decoration: none;
+  }
+
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.05);
+    padding-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .footer-copy {
+    font-family: var(--font-body);
+    font-size: 12px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.22);
+  }
+
+  .footer-hashtag {
+    font-family: var(--font-cond);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    color: var(--coral);
+    opacity: 0.7;
+  }
+
+  /* ═══════════════════════════════════════════
+     UTILITY ANIMATIONS
+  ═══════════════════════════════════════════ */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(28px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.65s ease, transform 0.65s ease;
+  }
+
+  .reveal.in-view {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ═══════════════════════════════════════════
+     RESPONSIVE
+  ═══════════════════════════════════════════ */
+  @media (max-width: 640px) {
+    .hero-ring { display: none; }
+    .side-text  { display: none; }
+
+    .countdown-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+
+    .form-grid { grid-template-columns: 1fr; }
+    .form-field.full { grid-column: auto; }
+
+    .footer-top { flex-direction: column; }
+    .footer-details { text-align: left; }
+    .footer-bottom { flex-direction: column; align-items: flex-start; }
+
+    .hero-inner { padding: 0 20px 56px; }
+    #countdown { padding: 60px 20px; }
+    #rsvp { padding: 70px 20px 80px; }
+    footer { padding: 40px 20px; }
+  }
+
+  @media (min-width: 641px) and (max-width: 900px) {
+    .hero-inner { padding: 0 32px 60px; }
+    .countdown-grid { max-width: 100%; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════ HERO ═══════════ -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-ring"></div>
+  <span class="side-text">Come Sing With Us · After Work · Have A Drink</span>
+
+  <div class="hero-inner">
+    <div class="brand-badge">
+      <div class="brand-badge-line"></div>
+      <span>After Work Anthems</span>
+    </div>
+
+    <p class="hero-eyebrow">Every Tuesday Night</p>
+
+    <h1 class="hero-title">
+      Tuesday<br>
+      <span class="stroke-text">Takeover</span>
+    </h1>
+
+    <div class="hero-subtitle-tag">wings &amp; karaoke at hue.</div>
+
+    <div class="hero-details">
+      <strong>$10 Wings + Fries</strong> &nbsp;×&nbsp; <strong>$100 Margarita Towers</strong><br>
+      <strong>7PM – 11PM</strong> &nbsp;·&nbsp; 67 E. Cermak Rd, Chicago, IL
+    </div>
+
+    <div class="hero-cta">
+      <a href="#rsvp" class="btn-primary">
+        Claim Your Slot <span class="btn-arrow">→</span>
+      </a>
+      <p class="hero-tagline">Step up. Grab the mic. Own the room.</p>
+    </div>
+  </div>
+
+  <div class="scroll-hint">
+    <span>Scroll</span>
+    <div class="scroll-dot"></div>
+  </div>
+</section>
+
+<!-- ═══════════ COUNTDOWN ═══════════ -->
+<section id="countdown">
+  <div style="max-width: 1100px; margin: 0 auto;">
+    <div class="section-label reveal">Next Event</div>
+    <h2 class="countdown-headline reveal">Next <em>Tuesday</em><br>Drops In</h2>
+
+    <div class="countdown-grid reveal">
+      <div class="countdown-block">
+        <span class="countdown-num" id="cd-days">00</span>
+        <span class="countdown-unit">Days</span>
+      </div>
+      <div class="countdown-block">
+        <span class="countdown-num" id="cd-hours">00</span>
+        <span class="countdown-unit">Hours</span>
+      </div>
+      <div class="countdown-block">
+        <span class="countdown-num" id="cd-mins">00</span>
+        <span class="countdown-unit">Minutes</span>
+      </div>
+      <div class="countdown-block">
+        <span class="countdown-num" id="cd-secs">00</span>
+        <span class="countdown-unit">Seconds</span>
+      </div>
+    </div>
+
+    <p class="countdown-caption reveal">Don't wait — slots go fast.</p>
+  </div>
+</section>
+
+<!-- ═══════════ MARQUEE ═══════════ -->
+<div class="marquee-strip" aria-hidden="true">
+  <div class="marquee-track">
+    <span class="marquee-item">Tuesday Takeover</span><span class="marquee-dot">◆</span>
+    <span class="marquee-item">After Work Anthems</span><span class="marquee-dot">◆</span>
+    <span class="marquee-item">Wings &amp; Karaoke</span><span class="marquee-dot">◆</span>
+    <span class="marquee-item">hue. Chicago</span><span class="marquee-dot">◆</span>
+    <span class="marquee-item">Grab The Mic</span><span class="marquee-dot">◆</span>
+    <span class="marquee-item">Own The Room</span><span class="marquee-dot">◆</span>
+    <span class="marquee-item">Tuesday Takeover</span><span class="marquee-dot">◆</span>
+    <span class="marquee-item">After Work Anthems</span><span class="marquee-dot">◆</span>
+    <span class="marquee-item">Wings &amp; Karaoke</span><span class="marquee-dot">◆</span>
+    <span class="marquee-item">hue. Chicago</span><span class="marquee-dot">◆</span>
+    <span class="marquee-item">Grab The Mic</span><span class="marquee-dot">◆</span>
+    <span class="marquee-item">Own The Room</span><span class="marquee-dot">◆</span>
+  </div>
+</div>
+
+<!-- ═══════════ RSVP ═══════════ -->
+<section id="rsvp">
+  <div class="rsvp-inner">
+    <div class="section-label reveal">Karaoke Sign-Up</div>
+    <h2 class="rsvp-tagline reveal">
+      RSVP to<br>
+      <span class="accent">Perform</span>
+    </h2>
+    <p class="rsvp-sub reveal">
+      Reserve your time slot below. Show up, check in, and get ready to take the stage.<br>
+      No experience required — just bring the energy.
+    </p>
+
+    <!-- Form -->
+    <form id="rsvp-form" novalidate autocomplete="off">
+      <div class="form-grid">
+
+        <div class="form-field reveal">
+          <label for="performer-name">Performer Name *</label>
+          <input type="text" id="performer-name" name="performer_name" placeholder="Your legal or stage name" required>
+          <span class="field-error" id="err-performer">Please enter your name.</span>
+        </div>
+
+        <div class="form-field reveal">
+          <label for="artist-name">Artist Name / Alias</label>
+          <input type="text" id="artist-name" name="artist_name" placeholder="If different from above">
+        </div>
+
+        <div class="form-field full reveal">
+          <label for="song-title">Song Title *</label>
+          <input type="text" id="song-title" name="song_title" placeholder="The song you're performing" required>
+          <span class="field-error" id="err-song">Please enter a song title.</span>
+        </div>
+
+        <div class="form-field full reveal">
+          <label for="time-slot">Preferred Time Slot *</label>
+          <div class="select-wrap">
+            <select id="time-slot" name="time_slot" required>
+              <option value="" disabled selected>Choose a time slot</option>
+              <option value="8pm-9pm">8:00 PM – 9:00 PM</option>
+              <option value="9pm-10pm">9:00 PM – 10:00 PM</option>
+              <option value="10pm-11pm">10:00 PM – 11:00 PM</option>
+            </select>
+          </div>
+          <span class="field-error" id="err-slot">Please select a time slot.</span>
+        </div>
+
+        <div class="form-field reveal">
+          <label for="phone">Phone Number *</label>
+          <input type="tel" id="phone" name="phone" placeholder="(312) 000-0000" required>
+          <span class="field-error" id="err-phone">Please enter your phone number.</span>
+        </div>
+
+        <div class="form-field reveal">
+          <label for="email">Email Address *</label>
+          <input type="email" id="email" name="email" placeholder="you@example.com" required>
+          <span class="field-error" id="err-email">Please enter a valid email.</span>
+        </div>
+
+      </div><!-- /.form-grid -->
+
+      <div class="form-submit-row reveal">
+        <button type="submit" class="btn-submit" id="submit-btn">
+          RSVP to Perform ✦
+        </button>
+        <p class="privacy-note">Your info stays with us.<br>No spam, ever.</p>
+      </div>
+    </form>
+
+    <!-- Success state -->
+    <div class="form-success" id="form-success">
+      <span class="success-icon">🎤</span>
+      <h3 class="success-title">You're On The List</h3>
+      <p class="success-msg">
+        See you <strong>Tuesday night</strong> at hue. Come ready to own the room.<br>
+        <strong>67 E. Cermak Rd · 7PM–11PM</strong>
+      </p>
+      <a href="#hero" class="btn-primary" style="display:inline-flex;">
+        Back to Top <span class="btn-arrow">↑</span>
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════ FOOTER ═══════════ -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      Tuesday Takeover
+      <small>After Work Anthems</small>
+    </div>
+    <div class="footer-details">
+      <p>hue. Chicago</p>
+      <p>67 E. Cermak Rd, Chicago, IL</p>
+      <p>Every Tuesday · 7PM – 11PM</p>
+      <p>$10 Wings+Fries · $100 Margarita Towers</p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2025 After Work Anthems. All rights reserved.</span>
+    <span class="footer-hashtag">#TuesdayTakeover</span>
+  </div>
+</footer>
+
+<!-- ═══════════ SCRIPTS ═══════════ -->
+<script>
+/* ─── COUNTDOWN TIMER ─── */
+(function () {
+  function getNextTuesday() {
+    // All times in Chicago timezone (America/Chicago)
+    const now = new Date();
+    const chicagoNow = new Date(now.toLocaleString('en-US', { timeZone: 'America/Chicago' }));
+
+    // Day of week: 0=Sun, 2=Tue
+    const day  = chicagoNow.getDay();
+    const hour = chicagoNow.getHours();
+    const min  = chicagoNow.getMinutes();
+    const sec  = chicagoNow.getSeconds();
+
+    let daysUntilTuesday = (2 - day + 7) % 7;
+
+    // If it IS Tuesday but before 7PM, target is today at 7PM
+    // If it IS Tuesday and 7PM or later, target is NEXT Tuesday
+    if (daysUntilTuesday === 0) {
+      const afterStart = hour > 19 || (hour === 19 && min > 0) || (hour === 19 && min === 0 && sec > 0);
+      if (afterStart) daysUntilTuesday = 7;
+    }
+
+    const target = new Date(chicagoNow);
+    target.setDate(chicagoNow.getDate() + daysUntilTuesday);
+    target.setHours(19, 0, 0, 0);
+
+    // Convert back: find the UTC time that represents 7PM Chicago
+    const targetStr = target.toLocaleString('en-US', {
+      timeZone: 'America/Chicago',
+      year: 'numeric', month: '2-digit', day: '2-digit',
+      hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false
+    });
+    return target;
+  }
+
+  function pad(n) { return String(n).padStart(2, '0'); }
+
+  function tick() {
+    const now    = new Date();
+    const target = getNextTuesdayUTC();
+    const diff   = target - now;
+
+    if (diff <= 0) { tick(); return; }
+
+    const days  = Math.floor(diff / 86400000);
+    const hours = Math.floor((diff % 86400000) / 3600000);
+    const mins  = Math.floor((diff % 3600000)  / 60000);
+    const secs  = Math.floor((diff % 60000)    / 1000);
+
+    setUnit('cd-days',  pad(days));
+    setUnit('cd-hours', pad(hours));
+    setUnit('cd-mins',  pad(mins));
+    setUnit('cd-secs',  pad(secs), true);
+  }
+
+  function getNextTuesdayUTC() {
+    const now = new Date();
+    // Work entirely in UTC offset for Chicago
+    // Chicago is UTC-5 (CST) or UTC-6 (CDT); use Intl to get current offset
+    const chicagoOffset = getChicagoOffset();
+    const chicagoMs = now.getTime() + (now.getTimezoneOffset() * 60000) - (chicagoOffset * 3600000);
+    const chicagoDate = new Date(chicagoMs);
+
+    const day  = chicagoDate.getUTCDay();
+    const hour = chicagoDate.getUTCHours();
+    const mins = chicagoDate.getUTCMinutes();
+    const secs = chicagoDate.getUTCSeconds();
+
+    let daysUntil = (2 - day + 7) % 7;
+    if (daysUntil === 0) {
+      if (hour > 19 || (hour === 19 && (mins > 0 || secs > 0))) {
+        daysUntil = 7;
+      }
+    }
+
+    const target = new Date(chicagoDate);
+    target.setUTCDate(chicagoDate.getUTCDate() + daysUntil);
+    target.setUTCHours(19, 0, 0, 0);
+
+    // Convert back to real UTC
+    return new Date(target.getTime() - (now.getTimezoneOffset() * 60000) + (chicagoOffset * 3600000));
+  }
+
+  function getChicagoOffset() {
+    // Determine if Chicago is on CDT (-5) or CST (-6)
+    const now = new Date();
+    const utcStr  = now.toLocaleString('en-US', { timeZone: 'UTC',            hour12: false, hour: '2-digit', minute: '2-digit' });
+    const chiStr  = now.toLocaleString('en-US', { timeZone: 'America/Chicago', hour12: false, hour: '2-digit', minute: '2-digit' });
+    const utcH  = parseInt(utcStr.split(':')[0]);
+    const chiH  = parseInt(chiStr.split(':')[0]);
+    return utcH - chiH;
+  }
+
+  let prevSecs = null;
+  function setUnit(id, val, isSeconds) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    if (el.textContent !== val) {
+      el.textContent = val;
+      if (isSeconds) {
+        el.classList.add('flash');
+        setTimeout(() => el.classList.remove('flash'), 150);
+      }
+    }
+  }
+
+  tick();
+  setInterval(tick, 1000);
+})();
+
+
+/* ─── SCROLL REVEAL ─── */
+(function () {
+  const els = document.querySelectorAll('.reveal');
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        e.target.style.transitionDelay = (i * 0.06) + 's';
+        e.target.classList.add('in-view');
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  els.forEach(el => obs.observe(el));
+})();
+
+
+/* ─── FORM VALIDATION & SUBMIT ─── */
+(function () {
+  const form    = document.getElementById('rsvp-form');
+  const success = document.getElementById('form-success');
+  const submitBtn = document.getElementById('submit-btn');
+
+  function show(errId)  { document.getElementById(errId).classList.add('visible'); }
+  function hide(errId)  { document.getElementById(errId).classList.remove('visible'); }
+  function markErr(el)  { el.classList.add('error'); }
+  function clearErr(el) { el.classList.remove('error'); }
+
+  function validateEmail(v) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
+  function validatePhone(v) { return v.replace(/\D/g,'').length >= 10; }
+
+  form.querySelectorAll('input, select').forEach(el => {
+    el.addEventListener('input', () => { clearErr(el); });
+  });
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    let valid = true;
+
+    const performer = document.getElementById('performer-name');
+    const song      = document.getElementById('song-title');
+    const slot      = document.getElementById('time-slot');
+    const phone     = document.getElementById('phone');
+    const email     = document.getElementById('email');
+
+    // Performer name
+    if (!performer.value.trim()) { markErr(performer); show('err-performer'); valid = false; }
+    else { clearErr(performer); hide('err-performer'); }
+
+    // Song
+    if (!song.value.trim()) { markErr(song); show('err-song'); valid = false; }
+    else { clearErr(song); hide('err-song'); }
+
+    // Slot
+    if (!slot.value) { markErr(slot); show('err-slot'); valid = false; }
+    else { clearErr(slot); hide('err-slot'); }
+
+    // Phone
+    if (!validatePhone(phone.value)) { markErr(phone); show('err-phone'); valid = false; }
+    else { clearErr(phone); hide('err-phone'); }
+
+    // Email
+    if (!validateEmail(email.value)) { markErr(email); show('err-email'); valid = false; }
+    else { clearErr(email); hide('err-email'); }
+
+    if (!valid) return;
+
+    // ── SUBMIT ──
+    // TO CONNECT: replace this block with a fetch() to Formspree, Airtable, Google Sheets, etc.
+    // Example Formspree:
+    //   const res = await fetch('https://formspree.io/f/YOUR_ID', {
+    //     method: 'POST',
+    //     headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+    //     body: JSON.stringify({
+    //       performer_name: performer.value,
+    //       artist_name: document.getElementById('artist-name').value,
+    //       song_title: song.value,
+    //       time_slot: slot.value,
+    //       phone: phone.value,
+    //       email: email.value
+    //     })
+    //   });
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Submitting...';
+
+    // Simulate async (remove in production when connecting real backend)
+    await new Promise(r => setTimeout(r, 900));
+
+    form.style.display = 'none';
+    success.classList.add('visible');
+    success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  });
+})();
+</script>
+
+</body>
+</html>
