@@ -1155,13 +1155,41 @@
 
     submitBtn.disabled = true;
     submitBtn.textContent = 'Submitting...';
-
-    // Simulate async (remove in production when connecting real backend)
-    await new Promise(r => setTimeout(r, 900));
-
-    form.style.display = 'none';
-    success.classList.add('visible');
-    success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    
+    try {
+      const payload = {
+        performer_name: performer.value.trim(),
+        artist_name: document.getElementById('artist-name').value.trim(),
+        song_title: song.value.trim(),
+        time_slot: slot.value,
+        phone: phone.value.trim(),
+        email: email.value.trim()
+      };
+    
+      const res = await fetch('https://script.google.com/macros/s/AKfycbwkEWBReRk9-tqWZfQjbqN4LmW84r9vUI-INzQ1GzkQdzXM51DQBjvkYKsAkoSMxG6d/exec', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'text/plain;charset=utf-8'
+        },
+        body: JSON.stringify(payload)
+      });
+    
+      const data = await res.json();
+    
+      if (data.result === 'success') {
+        form.style.display = 'none';
+        success.classList.add('visible');
+        success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      } else {
+        throw new Error(data.message || 'Submission failed.');
+      }
+    
+    } catch (err) {
+      alert('Submission failed. Please try again.');
+      console.error(err);
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'RSVP to Perform ✦';
+    }
   });
 })();
 </script>
