@@ -891,7 +891,7 @@
 <section id="countdown">
   <div style="max-width: 1100px; margin: 0 auto;">
     <div class="section-label reveal">Next Event</div>
-    <h2 class="countdown-headline reveal">Next <em>Tuesday</em><br>Drops In</h2>
+    <h2 class="countdown-headline reveal">Next <em>Tuesday</em><br>Starts In</h2>
 
     <div class="countdown-grid reveal">
       <div class="countdown-block">
@@ -1041,110 +1041,46 @@
 
 <!-- ═══════════ SCRIPTS ═══════════ -->
 <script>
-/* ─── COUNTDOWN TIMER ─── */
+/* ─── FIXED COUNTDOWN TIMER: APRIL 28, 2026 AT 7PM CHICAGO TIME ─── */
 (function () {
-  function getNextTuesday() {
-    // All times in Chicago timezone (America/Chicago)
-    const now = new Date();
-    const chicagoNow = new Date(now.toLocaleString('en-US', { timeZone: 'America/Chicago' }));
+  const targetDate = new Date('2026-04-29T00:00:00Z'); 
+  // 7:00 PM in Chicago on April 28, 2026 = 12:00 AM UTC on April 29, 2026 (during daylight saving time)
 
-    // Day of week: 0=Sun, 2=Tue
-    const day  = chicagoNow.getDay();
-    const hour = chicagoNow.getHours();
-    const min  = chicagoNow.getMinutes();
-    const sec  = chicagoNow.getSeconds();
-
-    let daysUntilTuesday = (2 - day + 7) % 7;
-
-    // If it IS Tuesday but before 7PM, target is today at 7PM
-    // If it IS Tuesday and 7PM or later, target is NEXT Tuesday
-    if (daysUntilTuesday === 0) {
-      const afterStart = hour > 19 || (hour === 19 && min > 0) || (hour === 19 && min === 0 && sec > 0);
-      if (afterStart) daysUntilTuesday = 7;
-    }
-
-    const target = new Date(chicagoNow);
-    target.setDate(chicagoNow.getDate() + daysUntilTuesday);
-    target.setHours(19, 0, 0, 0);
-
-    // Convert back: find the UTC time that represents 7PM Chicago
-    const targetStr = target.toLocaleString('en-US', {
-      timeZone: 'America/Chicago',
-      year: 'numeric', month: '2-digit', day: '2-digit',
-      hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false
-    });
-    return target;
-  }
-
-  function pad(n) { return String(n).padStart(2, '0'); }
-
-  function tick() {
-    const now    = new Date();
-    const target = getNextTuesdayUTC();
-    const diff   = target - now;
-
-    if (diff <= 0) { tick(); return; }
-
-    const days  = Math.floor(diff / 86400000);
-    const hours = Math.floor((diff % 86400000) / 3600000);
-    const mins  = Math.floor((diff % 3600000)  / 60000);
-    const secs  = Math.floor((diff % 60000)    / 1000);
-
-    setUnit('cd-days',  pad(days));
-    setUnit('cd-hours', pad(hours));
-    setUnit('cd-mins',  pad(mins));
-    setUnit('cd-secs',  pad(secs), true);
-  }
-
-  function getNextTuesdayUTC() {
-    const now = new Date();
-    // Work entirely in UTC offset for Chicago
-    // Chicago is UTC-5 (CST) or UTC-6 (CDT); use Intl to get current offset
-    const chicagoOffset = getChicagoOffset();
-    const chicagoMs = now.getTime() + (now.getTimezoneOffset() * 60000) - (chicagoOffset * 3600000);
-    const chicagoDate = new Date(chicagoMs);
-
-    const day  = chicagoDate.getUTCDay();
-    const hour = chicagoDate.getUTCHours();
-    const mins = chicagoDate.getUTCMinutes();
-    const secs = chicagoDate.getUTCSeconds();
-
-    let daysUntil = (2 - day + 7) % 7;
-    if (daysUntil === 0) {
-      if (hour > 19 || (hour === 19 && (mins > 0 || secs > 0))) {
-        daysUntil = 7;
-      }
-    }
-
-    const target = new Date(chicagoDate);
-    target.setUTCDate(chicagoDate.getUTCDate() + daysUntil);
-    target.setUTCHours(19, 0, 0, 0);
-
-    // Convert back to real UTC
-    return new Date(target.getTime() - (now.getTimezoneOffset() * 60000) + (chicagoOffset * 3600000));
-  }
-
-  function getChicagoOffset() {
-    // Determine if Chicago is on CDT (-5) or CST (-6)
-    const now = new Date();
-    const utcStr  = now.toLocaleString('en-US', { timeZone: 'UTC',            hour12: false, hour: '2-digit', minute: '2-digit' });
-    const chiStr  = now.toLocaleString('en-US', { timeZone: 'America/Chicago', hour12: false, hour: '2-digit', minute: '2-digit' });
-    const utcH  = parseInt(utcStr.split(':')[0]);
-    const chiH  = parseInt(chiStr.split(':')[0]);
-    return utcH - chiH;
+  function pad(n) {
+    return String(n).padStart(2, '0');
   }
 
   let prevSecs = null;
+
   function setUnit(id, val, isSeconds) {
     const el = document.getElementById(id);
     if (!el) return;
+
     if (el.textContent !== val) {
       el.textContent = val;
+
       if (isSeconds) {
         el.classList.add('flash');
         setTimeout(() => el.classList.remove('flash'), 150);
       }
     }
+  }
+
+  function tick() {
+    const now = new Date();
+    let diff = targetDate - now;
+
+    if (diff < 0) diff = 0;
+
+    const days = Math.floor(diff / 86400000);
+    const hours = Math.floor((diff % 86400000) / 3600000);
+    const mins = Math.floor((diff % 3600000) / 60000);
+    const secs = Math.floor((diff % 60000) / 1000);
+
+    setUnit('cd-days', pad(days));
+    setUnit('cd-hours', pad(hours));
+    setUnit('cd-mins', pad(mins));
+    setUnit('cd-secs', pad(secs), true);
   }
 
   tick();
