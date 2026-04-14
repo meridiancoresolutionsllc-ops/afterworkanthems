@@ -931,7 +931,14 @@
     </p>
 
     <!-- Form -->
-    <form id="rsvp-form" novalidate autocomplete="off">
+    <form
+    id="rsvp-form"
+    novalidate
+    autocomplete="off"
+    method="POST"
+    action="https://script.google.com/macros/s/AKfycbwkEWBReRk9-tqWZfQjbqN4LmW84r9vUI-INzQ1GzkQdzXM51DQBjvkYKsAkoSMxG6d/exec"
+    target="hidden_iframe"
+  >
       <div class="form-grid">
 
         <div class="form-field reveal">
@@ -985,6 +992,7 @@
         <p class="privacy-note">Your info stays with us.<br>No spam, ever.</p>
       </div>
     </form>
+    <iframe name="hidden_iframe" style="display:none;"></iframe>
 
     <!-- Success state -->
     <div class="form-success" id="form-success">
@@ -1089,7 +1097,7 @@
 
 /* ─── FORM VALIDATION & SUBMIT ─── */
 (function () {
-  const form    = document.getElementById('rsvp-form');
+  const form = document.getElementById('rsvp-form');
   const success = document.getElementById('form-success');
   const submitBtn = document.getElementById('submit-btn');
 
@@ -1103,93 +1111,46 @@
 
   form.querySelectorAll('input, select').forEach(el => {
     el.addEventListener('input', () => { clearErr(el); });
+    el.addEventListener('change', () => { clearErr(el); });
   });
 
-  form.addEventListener('submit', async (e) => {
+  form.addEventListener('submit', function (e) {
     e.preventDefault();
     let valid = true;
 
     const performer = document.getElementById('performer-name');
-    const song      = document.getElementById('song-title');
-    const slot      = document.getElementById('time-slot');
-    const phone     = document.getElementById('phone');
-    const email     = document.getElementById('email');
+    const song = document.getElementById('song-title');
+    const slot = document.getElementById('time-slot');
+    const phone = document.getElementById('phone');
+    const email = document.getElementById('email');
 
-    // Performer name
     if (!performer.value.trim()) { markErr(performer); show('err-performer'); valid = false; }
     else { clearErr(performer); hide('err-performer'); }
 
-    // Song
     if (!song.value.trim()) { markErr(song); show('err-song'); valid = false; }
     else { clearErr(song); hide('err-song'); }
 
-    // Slot
     if (!slot.value) { markErr(slot); show('err-slot'); valid = false; }
     else { clearErr(slot); hide('err-slot'); }
 
-    // Phone
     if (!validatePhone(phone.value)) { markErr(phone); show('err-phone'); valid = false; }
     else { clearErr(phone); hide('err-phone'); }
 
-    // Email
     if (!validateEmail(email.value)) { markErr(email); show('err-email'); valid = false; }
     else { clearErr(email); hide('err-email'); }
 
     if (!valid) return;
 
-    // ── SUBMIT ──
-    // TO CONNECT: replace this block with a fetch() to Formspree, Airtable, Google Sheets, etc.
-    // Example Formspree:
-    //   const res = await fetch('https://formspree.io/f/YOUR_ID', {
-    //     method: 'POST',
-    //     headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
-    //     body: JSON.stringify({
-    //       performer_name: performer.value,
-    //       artist_name: document.getElementById('artist-name').value,
-    //       song_title: song.value,
-    //       time_slot: slot.value,
-    //       phone: phone.value,
-    //       email: email.value
-    //     })
-    //   });
-
     submitBtn.disabled = true;
     submitBtn.textContent = 'Submitting...';
-    
-    try {
-      const payload = {
-        performer_name: performer.value.trim(),
-        artist_name: document.getElementById('artist-name').value.trim(),
-        song_title: song.value.trim(),
-        time_slot: slot.value,
-        phone: phone.value.trim(),
-        email: email.value.trim()
-      };
-    
-      const res = await fetch('https://script.google.com/macros/s/AKfycbwkEWBReRk9-tqWZfQjbqN4LmW84r9vUI-INzQ1GzkQdzXM51DQBjvkYKsAkoSMxG6d/exec', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'text/plain;charset=utf-8'
-        },
-        body: JSON.stringify(payload)
-      });
-    
-      const data = await res.json();
-    
-      if (data.result === 'success') {
-        form.style.display = 'none';
-        success.classList.add('visible');
-        success.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      } else {
-        throw new Error(data.message || 'Submission failed.');
-      }
-    
-    } catch (err) {
-      alert('Submission failed. Please try again.');
-      console.error(err);
-      submitBtn.disabled = false;
-      submitBtn.textContent = 'RSVP to Perform ✦';
-    }
+
+    form.submit();
+
+    setTimeout(() => {
+      form.style.display = 'none';
+      success.classList.add('visible');
+      success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }, 800);
   });
 })();
 </script>
