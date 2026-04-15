@@ -3,1008 +3,1797 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tuesday Takeover — After Work Anthems</title>
-<meta name="description" content="Wings & Karaoke at hue. Every Tuesday 7PM–11PM. 67 E. Cermak Rd, Chicago IL. RSVP to perform.">
+<title>After Work Anthems — Chicago's After-Hours Karaoke Series</title>
+<meta name="description" content="After Work Anthems hosts weekly karaoke events across Chicago. Tuesday Takeover at hue. · Ladies Night Out at Cajun Boil & Bar, Oak Park.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Anton&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;0,800;1,600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=Barlow+Condensed:ital,wght@0,300;0,400;0,600;0,700;0,800;0,900;1,600;1,700&display=swap" rel="stylesheet">
 
 <style>
-  :root {
-    --coral:      #F2635A;
-    --coral-hot:  #E8453A;
-    --salmon:     #F08080;
-    --peach:      #FDBCB4;
-    --cream:      #FFF5F0;
-    --dark:       #0D0A09;
-    --dark-mid:   #1A1210;
-    --dark-warm:  #2A1F1C;
-    --white:      #FFFFFF;
-    --white-dim:  rgba(255,255,255,0.72);
-    --white-ghost:rgba(255,255,255,0.12);
-    --tag-bg:     rgba(242,99,90,0.92);
-    --font-display: 'Bebas Neue', sans-serif;
-    --font-heavy:   'Anton', sans-serif;
-    --font-cond:    'Barlow Condensed', sans-serif;
-    --font-body:    'DM Sans', sans-serif;
-  }
-
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-  html { scroll-behavior: smooth; }
-
-  body {
-    background: var(--dark);
-    color: var(--white);
-    font-family: var(--font-body);
-    overflow-x: hidden;
-    cursor: default;
-  }
-
-  /* ─── GRAIN OVERLAY ─── */
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
-    pointer-events: none;
-    z-index: 9999;
-    opacity: 0.35;
-  }
-
-  /* ═══════════════════════════════════════════
-     HERO
-  ═══════════════════════════════════════════ */
-  #hero {
-    min-height: 100svh;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    padding: 0;
-    overflow: hidden;
-  }
-
-  /* gradient mesh background */
-  .hero-bg {
-    position: absolute;
-    inset: 0;
-    background:
-      radial-gradient(ellipse 80% 60% at 70% 20%, rgba(232,69,58,0.55) 0%, transparent 65%),
-      radial-gradient(ellipse 60% 80% at 10% 80%, rgba(240,128,128,0.4) 0%, transparent 60%),
-      radial-gradient(ellipse 100% 100% at 50% 50%, #1A1210 30%, #0D0A09 100%);
-    z-index: 0;
-  }
-
-  /* animated light sweep */
-  .hero-bg::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(115deg, transparent 30%, rgba(242,99,90,0.08) 50%, transparent 70%);
-    animation: sweep 6s ease-in-out infinite alternate;
-  }
-
-  @keyframes sweep {
-    0%   { transform: translateX(-20%) scaleX(1.2); opacity: 0.5; }
-    100% { transform: translateX(20%) scaleX(1.2);  opacity: 1; }
-  }
-
-  /* big decorative ring */
-  .hero-ring {
-    position: absolute;
-    width: min(700px, 110vw);
-    height: min(700px, 110vw);
-    border-radius: 50%;
-    border: 1px solid rgba(242,99,90,0.15);
-    top: 50%;
-    right: -15%;
-    transform: translateY(-50%);
-    z-index: 1;
-    animation: spin-slow 30s linear infinite;
-  }
-  .hero-ring::before {
-    content: '';
-    position: absolute;
-    inset: 40px;
-    border-radius: 50%;
-    border: 1px solid rgba(242,99,90,0.1);
-  }
-
-  @keyframes spin-slow {
-    to { transform: translateY(-50%) rotate(360deg); }
-  }
-
-  .hero-inner {
-    position: relative;
-    z-index: 2;
-    padding: 40px 5vw 60px;
-    max-width: 1100px;
-    margin: 0 auto;
-    width: 100%;
-  }
-
-  /* brand badge */
-  .brand-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 28px;
-    animation: fadeUp 0.6s ease both;
-  }
-
-  .brand-badge-line {
-    width: 32px;
-    height: 2px;
-    background: var(--coral);
-  }
-
-  .brand-badge span {
-    font-family: var(--font-cond);
-    font-size: 13px;
-    font-weight: 700;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: var(--coral);
-  }
-
-  /* main headline stack */
-  .hero-eyebrow {
-    font-family: var(--font-cond);
-    font-size: clamp(14px, 2vw, 20px);
-    font-weight: 600;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: var(--white-dim);
-    margin-bottom: 8px;
-    animation: fadeUp 0.7s ease 0.1s both;
-  }
-
-  .hero-title {
-    font-family: var(--font-display);
-    font-size: clamp(82px, 15vw, 180px);
-    line-height: 0.88;
-    letter-spacing: -0.01em;
-    text-transform: uppercase;
-    color: var(--white);
-    animation: fadeUp 0.7s ease 0.2s both;
-    position: relative;
-  }
-
-  .hero-title .stroke-text {
-    -webkit-text-stroke: 2px var(--white);
-    color: transparent;
-  }
-
-  .hero-subtitle-tag {
-    display: inline-block;
-    background: var(--tag-bg);
-    padding: 10px 20px;
-    font-family: var(--font-cond);
-    font-size: clamp(18px, 3vw, 28px);
-    font-weight: 800;
-    font-style: italic;
-    letter-spacing: 0.04em;
-    text-transform: lowercase;
-    color: var(--dark);
-    margin: 18px 0 22px;
-    transform: rotate(-1deg);
-    animation: fadeUp 0.7s ease 0.35s both;
-  }
-
-  .hero-details {
-    font-family: var(--font-cond);
-    font-size: clamp(13px, 1.6vw, 17px);
-    font-weight: 600;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--white-dim);
-    margin-bottom: 36px;
-    animation: fadeUp 0.7s ease 0.45s both;
-    line-height: 1.8;
-  }
-
-  .hero-details strong {
-    color: var(--white);
-  }
-
-  /* CTA row */
-  .hero-cta {
-    display: flex;
-    align-items: center;
-    gap: 24px;
-    flex-wrap: wrap;
-    animation: fadeUp 0.7s ease 0.55s both;
-  }
-
-  .btn-primary {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    background: var(--coral);
-    color: var(--dark);
-    font-family: var(--font-cond);
-    font-size: 16px;
-    font-weight: 800;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    padding: 18px 36px;
-    border: none;
-    cursor: pointer;
-    text-decoration: none;
-    position: relative;
-    overflow: hidden;
-    transition: transform 0.2s ease, background 0.2s ease;
-    clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 100%, 12px 100%);
-  }
-
-  .btn-primary::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: rgba(255,255,255,0.15);
-    transform: translateX(-100%);
-    transition: transform 0.3s ease;
-  }
-
-  .btn-primary:hover::before { transform: translateX(0); }
-  .btn-primary:hover { transform: translateY(-2px); background: var(--coral-hot); }
-  .btn-primary:active { transform: translateY(0); }
-
-  .btn-arrow {
-    font-size: 20px;
-    transition: transform 0.2s;
-  }
-  .btn-primary:hover .btn-arrow { transform: translateX(4px); }
-
-  .hero-tagline {
-    font-family: var(--font-cond);
-    font-size: clamp(13px, 1.4vw, 16px);
-    font-style: italic;
-    font-weight: 300;
-    color: var(--white-dim);
-    letter-spacing: 0.08em;
-  }
-
-  /* vertical side text */
-  .side-text {
-    position: absolute;
-    right: 24px;
-    top: 50%;
-    transform: translateY(-50%) rotate(90deg);
-    transform-origin: center;
-    font-family: var(--font-cond);
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.35em;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.25);
-    white-space: nowrap;
-    z-index: 2;
-  }
-
-  /* scroll indicator */
-  .scroll-hint {
-    position: absolute;
-    bottom: 28px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 2;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 8px;
-    animation: fadeUp 1s ease 1.2s both;
-  }
-
-  .scroll-hint span {
-    font-family: var(--font-cond);
-    font-size: 10px;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.3);
-  }
-
-  .scroll-dot {
-    width: 1px;
-    height: 44px;
-    background: linear-gradient(to bottom, var(--coral), transparent);
-    animation: pulse-line 2s ease-in-out infinite;
-  }
-
-  @keyframes pulse-line {
-    0%, 100% { opacity: 0.4; transform: scaleY(0.7); transform-origin: top; }
-    50%       { opacity: 1;   transform: scaleY(1);   transform-origin: top; }
-  }
-
-  /* ═══════════════════════════════════════════
-     COUNTDOWN
-  ═══════════════════════════════════════════ */
-  #countdown {
-    padding: 80px 5vw;
-    background: var(--dark-warm);
-    position: relative;
-    overflow: hidden;
-  }
-
-  #countdown::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(ellipse 80% 150% at 50% 50%, rgba(242,99,90,0.06) 0%, transparent 70%);
-    pointer-events: none;
-  }
-
-  .section-label {
-    font-family: var(--font-cond);
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 0.35em;
-    text-transform: uppercase;
-    color: var(--coral);
-    margin-bottom: 12px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-
-  .section-label::after {
-    content: '';
-    flex: 1;
-    max-width: 48px;
-    height: 1px;
-    background: var(--coral);
-    opacity: 0.5;
-  }
-
-  .countdown-headline {
-    font-family: var(--font-display);
-    font-size: clamp(36px, 6vw, 72px);
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    color: var(--white);
-    margin-bottom: 48px;
-    line-height: 1;
-  }
-
-  .countdown-headline em {
-    color: var(--coral);
-    font-style: normal;
-  }
-
-  .countdown-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 12px;
-    max-width: 640px;
-  }
-
-  .countdown-block {
-    background: var(--white-ghost);
-    border: 1px solid rgba(242,99,90,0.2);
-    padding: 28px 16px 20px;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-    transition: border-color 0.3s;
-  }
-
-  .countdown-block:hover {
-    border-color: rgba(242,99,90,0.5);
-  }
-
-  .countdown-block::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, rgba(242,99,90,0.06) 0%, transparent 60%);
-  }
-
-  .countdown-num {
-    font-family: var(--font-display);
-    font-size: clamp(48px, 8vw, 80px);
-    line-height: 1;
-    color: var(--white);
-    display: block;
-    position: relative;
-    transition: color 0.15s;
-  }
-
-  .countdown-num.flash {
-    color: var(--coral);
-  }
-
-  .countdown-unit {
-    font-family: var(--font-cond);
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 0.28em;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.4);
-    margin-top: 6px;
-    display: block;
-  }
-
-  .countdown-caption {
-    margin-top: 36px;
-    font-family: var(--font-cond);
-    font-size: clamp(15px, 2vw, 19px);
-    font-style: italic;
-    font-weight: 300;
-    color: var(--white-dim);
-    letter-spacing: 0.06em;
-  }
-
-  /* ═══════════════════════════════════════════
-     DIVIDER MARQUEE
-  ═══════════════════════════════════════════ */
-  .marquee-strip {
-    background: var(--coral);
-    padding: 14px 0;
-    overflow: hidden;
-    white-space: nowrap;
-    position: relative;
-  }
-
-  .marquee-track {
-    display: inline-flex;
-    animation: marquee 18s linear infinite;
-  }
-
-  .marquee-item {
-    font-family: var(--font-display);
-    font-size: 22px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--dark);
-    padding: 0 32px;
-  }
-
-  .marquee-dot {
-    color: rgba(13,10,9,0.4);
-    padding: 0 8px;
-  }
-
-  @keyframes marquee {
-    from { transform: translateX(0); }
-    to   { transform: translateX(-50%); }
-  }
-
-  /* ═══════════════════════════════════════════
-     RSVP FORM
-  ═══════════════════════════════════════════ */
-  #rsvp {
-    padding: 90px 5vw 100px;
-    background: var(--dark);
-    position: relative;
-    overflow: hidden;
-  }
-
-  #rsvp::before {
-    content: '';
-    position: absolute;
-    top: -200px;
-    left: -200px;
-    width: 600px;
-    height: 600px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(242,99,90,0.07) 0%, transparent 70%);
-    pointer-events: none;
-  }
-
-  #rsvp::after {
-    content: '';
-    position: absolute;
-    bottom: -100px;
-    right: -100px;
-    width: 400px;
-    height: 400px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(242,99,90,0.05) 0%, transparent 70%);
-    pointer-events: none;
-  }
-
-  .rsvp-inner {
-    max-width: 680px;
-    position: relative;
-    z-index: 1;
-  }
-
-  .rsvp-tagline {
-    font-family: var(--font-display);
-    font-size: clamp(28px, 5vw, 52px);
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
-    color: var(--white);
-    margin-bottom: 6px;
-    line-height: 1;
-  }
-
-  .rsvp-tagline .accent { color: var(--coral); }
-
-  .rsvp-sub {
-    font-family: var(--font-body);
-    font-size: 15px;
-    font-weight: 300;
-    color: var(--white-dim);
-    margin-bottom: 48px;
-    line-height: 1.6;
-  }
-
-  /* form grid */
-  .form-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-  }
-
-  .form-field {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
-
-  .form-field.full { grid-column: 1 / -1; }
-
-  label {
-    font-family: var(--font-cond);
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.28em;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.5);
-  }
-
-  input, select, textarea {
-    background: rgba(255,255,255,0.05);
-    border: 1px solid rgba(255,255,255,0.1);
-    color: var(--white);
-    font-family: var(--font-body);
-    font-size: 15px;
-    font-weight: 400;
-    padding: 16px 18px;
-    outline: none;
-    transition: border-color 0.25s, background 0.25s, box-shadow 0.25s;
-    width: 100%;
-    -webkit-appearance: none;
-    appearance: none;
-  }
-
-  input::placeholder { color: rgba(255,255,255,0.22); }
-
-  input:focus, select:focus {
-    border-color: var(--coral);
-    background: rgba(242,99,90,0.07);
-    box-shadow: 0 0 0 3px rgba(242,99,90,0.12);
-  }
-
-  input.error, select.error {
-    border-color: rgba(232,69,58,0.8);
-    box-shadow: 0 0 0 3px rgba(232,69,58,0.15);
-  }
-
-  /* custom select arrow */
-  .select-wrap {
-    position: relative;
-  }
-
-  .select-wrap::after {
-    content: '▾';
-    position: absolute;
-    right: 18px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: var(--coral);
-    pointer-events: none;
-    font-size: 14px;
-  }
-
-  select { cursor: pointer; }
-
-  select option {
-    background: var(--dark-warm);
-    color: var(--white);
-  }
-
-  .field-error {
-    font-family: var(--font-cond);
-    font-size: 11px;
-    letter-spacing: 0.12em;
-    color: var(--coral-hot);
-    margin-top: 2px;
-    display: none;
-  }
-
-  .field-error.visible { display: block; }
-
-  /* submit row */
-  .form-submit-row {
-    margin-top: 32px;
-    display: flex;
-    align-items: center;
-    gap: 24px;
-    flex-wrap: wrap;
-  }
-
-  .btn-submit {
-    font-family: var(--font-cond);
-    font-size: 16px;
-    font-weight: 800;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--dark);
-    background: var(--coral);
-    border: none;
-    padding: 20px 44px;
-    cursor: pointer;
-    position: relative;
-    overflow: hidden;
-    clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 100%, 14px 100%);
-    transition: background 0.2s, transform 0.2s;
-    flex-shrink: 0;
-  }
-
-  .btn-submit::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: rgba(255,255,255,0.15);
-    transform: translateX(-101%);
-    transition: transform 0.3s ease;
-  }
-
-  .btn-submit:hover::before { transform: translateX(0); }
-  .btn-submit:hover { background: var(--coral-hot); transform: translateY(-2px); }
-  .btn-submit:active { transform: translateY(0); }
-  .btn-submit:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
-
-  .privacy-note {
-    font-family: var(--font-body);
-    font-size: 12px;
-    font-weight: 300;
-    color: rgba(255,255,255,0.28);
-    line-height: 1.5;
-  }
-
-  /* ─── SUCCESS STATE ─── */
-  .form-success {
-    display: none;
-    text-align: center;
-    padding: 60px 20px;
-    animation: scaleIn 0.5s cubic-bezier(0.34,1.56,0.64,1) both;
-  }
-
-  .form-success.visible { display: block; }
-
-  @keyframes scaleIn {
-    from { opacity: 0; transform: scale(0.85); }
-    to   { opacity: 1; transform: scale(1); }
-  }
-
-  .success-icon {
-    font-size: 56px;
-    margin-bottom: 20px;
-    display: block;
-    animation: pop 0.5s cubic-bezier(0.34,1.56,0.64,1) 0.2s both;
-  }
-
-  @keyframes pop {
-    from { transform: scale(0); }
-    to   { transform: scale(1); }
-  }
-
-  .success-title {
-    font-family: var(--font-display);
-    font-size: clamp(36px, 6vw, 60px);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: var(--white);
-    margin-bottom: 12px;
-    line-height: 1;
-  }
-
-  .success-msg {
-    font-family: var(--font-body);
-    font-size: 16px;
-    font-weight: 300;
-    color: var(--white-dim);
-    line-height: 1.7;
-    max-width: 460px;
-    margin: 0 auto 32px;
-  }
-
-  .success-msg strong { color: var(--coral); font-weight: 600; }
-
-  /* ═══════════════════════════════════════════
-     FOOTER
-  ═══════════════════════════════════════════ */
-  footer {
-    background: var(--dark-warm);
-    border-top: 1px solid rgba(255,255,255,0.06);
-    padding: 48px 5vw;
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-  }
-
-  .footer-top {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 32px;
-    flex-wrap: wrap;
-  }
-
-  .footer-brand {
-    font-family: var(--font-display);
-    font-size: 28px;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    color: var(--white);
-    line-height: 1.1;
-  }
-
-  .footer-brand small {
-    display: block;
-    font-family: var(--font-cond);
-    font-size: 11px;
-    letter-spacing: 0.3em;
-    color: var(--coral);
-    font-weight: 700;
-    margin-top: 2px;
-  }
-
-  .footer-details {
-    text-align: right;
-  }
-
-  .footer-details p {
-    font-family: var(--font-cond);
-    font-size: 14px;
-    font-weight: 500;
-    letter-spacing: 0.1em;
-    color: var(--white-dim);
-    line-height: 1.8;
-  }
-
-  .footer-details a {
-    color: var(--coral);
-    text-decoration: none;
-  }
-
-  .footer-bottom {
-    border-top: 1px solid rgba(255,255,255,0.05);
-    padding-top: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 16px;
-    flex-wrap: wrap;
-  }
-
-  .footer-copy {
-    font-family: var(--font-body);
-    font-size: 12px;
-    font-weight: 300;
-    color: rgba(255,255,255,0.22);
-  }
-
-  .footer-hashtag {
-    font-family: var(--font-cond);
-    font-size: 13px;
-    font-weight: 700;
-    letter-spacing: 0.15em;
-    color: var(--coral);
-    opacity: 0.7;
-  }
-
-  /* ═══════════════════════════════════════════
-     UTILITY ANIMATIONS
-  ═══════════════════════════════════════════ */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(28px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-
-  .reveal {
-    opacity: 0;
-    transform: translateY(24px);
-    transition: opacity 0.65s ease, transform 0.65s ease;
-  }
-
-  .reveal.in-view {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  /* ═══════════════════════════════════════════
-     RESPONSIVE
-  ═══════════════════════════════════════════ */
-  @media (max-width: 640px) {
-    .hero-ring { display: none; }
-    .side-text  { display: none; }
-
-    .countdown-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
-
-    .form-grid { grid-template-columns: 1fr; }
-    .form-field.full { grid-column: auto; }
-
-    .footer-top { flex-direction: column; }
-    .footer-details { text-align: left; }
-    .footer-bottom { flex-direction: column; align-items: flex-start; }
-
-    .hero-inner { padding: 0 20px 56px; }
-    #countdown { padding: 60px 20px; }
-    #rsvp { padding: 70px 20px 80px; }
-    footer { padding: 40px 20px; }
-  }
-
-  @media (min-width: 641px) and (max-width: 900px) {
-    .hero-inner { padding: 0 32px 60px; }
-    .countdown-grid { max-width: 100%; }
-  }
+/* ─── TOKENS ─── */
+:root {
+  --brand-coral:   #F2635A;
+  --brand-hot:     #E8453A;
+  --brand-gold:    #D4A853;
+  --brand-gold-lt: #F0C97A;
+
+  /* Tuesday palette */
+  --tue-bg:        #0D0A09;
+  --tue-accent:    #F2635A;
+  --tue-mid:       #2A1F1C;
+
+  /* Ladies Night palette */
+  --lno-bg:        #08080F;
+  --lno-accent:    #B87AFF;
+  --lno-hot:       #9B55F5;
+  --lno-mid:       #14101F;
+
+  --dark:          #080707;
+  --dark-surface:  #0F0D0C;
+  --white:         #FFFFFF;
+  --white-dim:     rgba(255,255,255,0.65);
+  --white-ghost:   rgba(255,255,255,0.08);
+
+  --font-display:  'Bebas Neue', sans-serif;
+  --font-cond:     'Barlow Condensed', sans-serif;
+  --font-body:     'DM Sans', sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--dark);
+  color: var(--white);
+  font-family: var(--font-body);
+  overflow-x: hidden;
+}
+
+/* grain */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9000;
+  opacity: 0.4;
+}
+
+/* ═══════════════════════════════════════
+   NAV
+═══════════════════════════════════════ */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 5vw;
+  background: rgba(8,7,7,0.82);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  transition: padding 0.3s;
+}
+
+.nav-logo {
+  font-family: var(--font-display);
+  font-size: 22px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--white);
+  text-decoration: none;
+  line-height: 1;
+}
+
+.nav-logo span { color: var(--brand-coral); }
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  list-style: none;
+}
+
+.nav-links a {
+  font-family: var(--font-cond);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--white-dim);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover { color: var(--white); }
+
+.nav-cta {
+  font-family: var(--font-cond);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--dark) !important;
+  background: var(--brand-coral);
+  padding: 10px 22px;
+  text-decoration: none;
+  transition: background 0.2s, transform 0.2s !important;
+  clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 100%, 8px 100%);
+}
+
+.nav-cta:hover { background: var(--brand-hot); transform: translateY(-1px); color: var(--dark) !important; }
+
+.nav-mobile-btn {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.nav-mobile-btn span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--white);
+  transition: transform 0.3s, opacity 0.3s;
+}
+
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .nav-mobile-btn { display: flex; }
+}
+
+/* ═══════════════════════════════════════
+   BRAND HERO
+═══════════════════════════════════════ */
+#brand-hero {
+  min-height: 100svh;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 120px 5vw 80px;
+}
+
+.brand-hero-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 70% 50% at 20% 80%, rgba(242,99,90,0.18) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 60% at 85% 15%, rgba(184,122,255,0.14) 0%, transparent 60%),
+    radial-gradient(ellipse 100% 100% at 50% 50%, #0F0D0C 20%, #080707 100%);
+}
+
+/* animated grid lines */
+.brand-hero-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+  background-size: 80px 80px;
+  mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 80%);
+  animation: grid-drift 20s linear infinite;
+}
+
+@keyframes grid-drift {
+  from { transform: translateY(0); }
+  to   { transform: translateY(80px); }
+}
+
+/* horizontal rule lines decorative */
+.brand-hero-lines {
+  position: absolute;
+  top: 50%;
+  left: 0; right: 0;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.brand-hero-lines::before,
+.brand-hero-lines::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(242,99,90,0.3) 40%, rgba(184,122,255,0.3) 60%, transparent 100%);
+}
+.brand-hero-lines::before { top: -120px; }
+.brand-hero-lines::after  { top:  120px; }
+
+.brand-hero-inner {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  max-width: 900px;
+}
+
+.brand-eyebrow {
+  font-family: var(--font-cond);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--brand-coral);
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  animation: fadeUp 0.6s ease both;
+}
+
+.brand-eyebrow::before,
+.brand-eyebrow::after {
+  content: '';
+  width: 40px;
+  height: 1px;
+  background: var(--brand-coral);
+  opacity: 0.5;
+}
+
+.brand-wordmark {
+  font-family: var(--font-display);
+  font-size: clamp(64px, 13vw, 160px);
+  line-height: 0.85;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--white);
+  animation: fadeUp 0.7s ease 0.1s both;
+}
+
+.brand-wordmark .line2 {
+  display: block;
+  -webkit-text-stroke: 2px rgba(255,255,255,0.5);
+  color: transparent;
+  position: relative;
+}
+
+/* animated underline on ANTHEMS */
+.brand-wordmark .line2::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--brand-coral), var(--lno-accent));
+  animation: underline-expand 0.9s ease 0.8s forwards;
+}
+
+@keyframes underline-expand {
+  to { width: 60%; }
+}
+
+.brand-tagline {
+  font-family: var(--font-cond);
+  font-size: clamp(15px, 2.2vw, 22px);
+  font-weight: 300;
+  font-style: italic;
+  letter-spacing: 0.12em;
+  color: var(--white-dim);
+  margin-top: 32px;
+  animation: fadeUp 0.7s ease 0.3s both;
+}
+
+.brand-pill-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 40px;
+  flex-wrap: wrap;
+  animation: fadeUp 0.7s ease 0.45s both;
+}
+
+.brand-pill {
+  font-family: var(--font-cond);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  padding: 8px 18px;
+  border: 1px solid rgba(255,255,255,0.15);
+  color: var(--white-dim);
+  background: rgba(255,255,255,0.04);
+}
+
+.brand-pill.tue { border-color: rgba(242,99,90,0.4); color: var(--brand-coral); }
+.brand-pill.lno { border-color: rgba(184,122,255,0.4); color: var(--lno-accent); }
+
+.brand-scroll-down {
+  position: absolute;
+  bottom: 36px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  z-index: 2;
+  animation: fadeUp 1s ease 1.2s both;
+  text-decoration: none;
+}
+
+.brand-scroll-down span {
+  font-family: var(--font-cond);
+  font-size: 10px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.28);
+}
+
+.scroll-line {
+  width: 1px;
+  height: 48px;
+  background: linear-gradient(to bottom, rgba(242,99,90,0.8), transparent);
+  animation: pulse-line 2s ease-in-out infinite;
+}
+
+@keyframes pulse-line {
+  0%, 100% { opacity: 0.3; transform: scaleY(0.7); transform-origin: top; }
+  50%       { opacity: 1;   transform: scaleY(1);   transform-origin: top; }
+}
+
+/* ═══════════════════════════════════════
+   SECTION SHARED
+═══════════════════════════════════════ */
+.section-label {
+  font-family: var(--font-cond);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.38em;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.section-label::after {
+  content: '';
+  width: 36px;
+  height: 1px;
+  opacity: 0.5;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.reveal.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ═══════════════════════════════════════
+   EVENTS HUB
+═══════════════════════════════════════ */
+#events {
+  padding: 100px 5vw;
+  background: var(--dark-surface);
+  position: relative;
+}
+
+.events-header {
+  max-width: 1200px;
+  margin: 0 auto 64px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.events-header-left {}
+
+.events-title {
+  font-family: var(--font-display);
+  font-size: clamp(40px, 7vw, 80px);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  line-height: 0.92;
+  color: var(--white);
+}
+
+.events-subtitle {
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 300;
+  color: var(--white-dim);
+  margin-top: 14px;
+  line-height: 1.6;
+  max-width: 380px;
+}
+
+/* event cards grid */
+.events-grid {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 2px;
+}
+
+/* ── Event Card ── */
+.event-card {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  min-height: 520px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 40px 36px;
+  text-decoration: none;
+  color: var(--white);
+  transition: transform 0.4s cubic-bezier(0.25,0.46,0.45,0.94);
+}
+
+.event-card:hover { transform: scale(1.01); z-index: 2; }
+
+/* Tuesday card */
+.event-card.tuesday {
+  background:
+    radial-gradient(ellipse 80% 60% at 80% 10%, rgba(242,99,90,0.45) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 80% at 10% 90%, rgba(240,128,128,0.25) 0%, transparent 60%),
+    #1A1210;
+}
+
+/* Ladies Night card */
+.event-card.ladies {
+  background:
+    radial-gradient(ellipse 70% 50% at 70% 10%, rgba(184,122,255,0.5) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 80% at 10% 90%, rgba(120,60,220,0.25) 0%, transparent 60%),
+    #0E0915;
+}
+
+/* Coming Soon card */
+.event-card.coming-soon {
+  background:
+    linear-gradient(135deg, #0F0D0C 0%, #141414 100%);
+  border: 1px solid rgba(255,255,255,0.06);
+  min-height: 280px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  cursor: default;
+}
+
+.event-card.coming-soon:hover { transform: none; }
+
+/* card inner decorative circle */
+.card-circle {
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.06);
+  top: -100px;
+  right: -100px;
+  pointer-events: none;
+  transition: transform 0.6s ease;
+}
+
+.event-card:hover .card-circle { transform: scale(1.1) rotate(15deg); }
+
+.card-circle::before {
+  content: '';
+  position: absolute;
+  inset: 60px;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.04);
+}
+
+/* card tag */
+.card-tag {
+  position: absolute;
+  top: 32px;
+  left: 36px;
+  font-family: var(--font-cond);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  padding: 6px 14px;
+  color: var(--dark);
+}
+
+.tuesday .card-tag { background: var(--brand-coral); }
+.ladies  .card-tag { background: var(--lno-accent); }
+
+/* card day number */
+.card-day-num {
+  font-family: var(--font-display);
+  font-size: 120px;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  position: absolute;
+  top: 20px;
+  right: 28px;
+  opacity: 0.07;
+  user-select: none;
+  transition: opacity 0.3s;
+}
+
+.event-card:hover .card-day-num { opacity: 0.12; }
+
+/* card content */
+.card-content { position: relative; z-index: 2; }
+
+.card-night-label {
+  font-family: var(--font-cond);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.tuesday .card-night-label { color: rgba(242,99,90,0.8); }
+.ladies  .card-night-label { color: rgba(184,122,255,0.8); }
+
+.card-title {
+  font-family: var(--font-display);
+  font-size: clamp(42px, 5vw, 64px);
+  line-height: 0.9;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--white);
+  margin-bottom: 16px;
+}
+
+.card-subtitle-tag {
+  display: inline-block;
+  padding: 7px 14px;
+  font-family: var(--font-cond);
+  font-size: 16px;
+  font-weight: 800;
+  font-style: italic;
+  text-transform: lowercase;
+  color: var(--dark);
+  margin-bottom: 20px;
+  transform: rotate(-0.8deg);
+}
+
+.tuesday .card-subtitle-tag { background: rgba(242,99,90,0.9); }
+.ladies  .card-subtitle-tag { background: rgba(184,122,255,0.9); }
+
+.card-details {
+  font-family: var(--font-cond);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.6);
+  line-height: 1.9;
+  margin-bottom: 28px;
+}
+
+.card-details strong { color: var(--white); }
+
+.card-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-cond);
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--dark);
+  padding: 14px 28px;
+  text-decoration: none;
+  clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 100%, 10px 100%);
+  transition: transform 0.2s, filter 0.2s;
+}
+
+.tuesday .card-btn { background: var(--brand-coral); }
+.ladies  .card-btn { background: var(--lno-accent); }
+
+.card-btn:hover { transform: translateY(-2px); filter: brightness(1.1); }
+
+.card-btn-arrow { transition: transform 0.2s; }
+.card-btn:hover .card-btn-arrow { transform: translateX(4px); }
+
+/* coming soon card internals */
+.cs-icon {
+  font-size: 32px;
+  margin-bottom: 16px;
+  opacity: 0.3;
+  display: block;
+}
+
+.cs-text {
+  font-family: var(--font-display);
+  font-size: 28px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.15);
+  margin-bottom: 8px;
+}
+
+.cs-sub {
+  font-family: var(--font-cond);
+  font-size: 12px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.1);
+}
+
+/* ═══════════════════════════════════════
+   MARQUEE STRIP
+═══════════════════════════════════════ */
+.marquee-strip {
+  padding: 14px 0;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.marquee-strip.coral { background: var(--brand-coral); }
+.marquee-strip.purple { background: var(--lno-accent); }
+
+.marquee-track {
+  display: inline-flex;
+  animation: marquee 22s linear infinite;
+}
+
+.marquee-item {
+  font-family: var(--font-display);
+  font-size: 20px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--dark);
+  padding: 0 28px;
+  opacity: 0.85;
+}
+
+.marquee-sep { color: rgba(13,10,9,0.35); padding: 0 4px; }
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* ═══════════════════════════════════════
+   TUESDAY TAKEOVER SECTION
+═══════════════════════════════════════ */
+#tuesday {
+  padding: 100px 5vw;
+  background: var(--tue-bg);
+  position: relative;
+  overflow: hidden;
+}
+
+#tuesday::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 70% 50% at 80% 20%, rgba(242,99,90,0.12) 0%, transparent 65%),
+    radial-gradient(ellipse 50% 70% at 10% 80%, rgba(242,99,90,0.07) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+/* ═══════════════════════════════════════
+   LADIES NIGHT SECTION
+═══════════════════════════════════════ */
+#ladies {
+  padding: 100px 5vw;
+  background: var(--lno-bg);
+  position: relative;
+  overflow: hidden;
+}
+
+#ladies::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 70% 50% at 80% 20%, rgba(184,122,255,0.12) 0%, transparent 65%),
+    radial-gradient(ellipse 50% 70% at 10% 80%, rgba(120,60,220,0.08) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+/* Shared event section layout */
+.event-section-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+@media (max-width: 860px) {
+  .event-section-inner { grid-template-columns: 1fr; gap: 48px; }
+}
+
+.event-section-left {}
+
+.event-section-label {
+  font-family: var(--font-cond);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.38em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.event-section-label::after {
+  content: '';
+  width: 36px;
+  height: 1px;
+  opacity: 0.5;
+}
+
+#tuesday .event-section-label { color: var(--tue-accent); }
+#tuesday .event-section-label::after { background: var(--tue-accent); }
+
+#ladies .event-section-label  { color: var(--lno-accent); }
+#ladies .event-section-label::after  { background: var(--lno-accent); }
+
+.event-section-heading {
+  font-family: var(--font-display);
+  font-size: clamp(58px, 9vw, 110px);
+  line-height: 0.88;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--white);
+  margin-bottom: 20px;
+}
+
+.event-section-heading .stroke {
+  -webkit-text-stroke: 2px rgba(255,255,255,0.5);
+  color: transparent;
+}
+
+.event-section-subtag {
+  display: inline-block;
+  padding: 9px 18px;
+  font-family: var(--font-cond);
+  font-size: 18px;
+  font-weight: 800;
+  font-style: italic;
+  text-transform: lowercase;
+  color: var(--dark);
+  margin-bottom: 28px;
+  transform: rotate(-1deg);
+}
+
+#tuesday .event-section-subtag { background: rgba(242,99,90,0.9); }
+#ladies  .event-section-subtag { background: rgba(184,122,255,0.9); }
+
+.event-section-details {
+  font-family: var(--font-cond);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.55);
+  line-height: 2;
+  margin-bottom: 36px;
+}
+
+.event-section-details strong { color: var(--white); }
+
+.event-section-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-cond);
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--dark);
+  padding: 18px 36px;
+  text-decoration: none;
+  clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 100%, 12px 100%);
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.2s;
+}
+
+#tuesday .event-section-cta { background: var(--tue-accent); }
+#ladies  .event-section-cta { background: var(--lno-accent); }
+
+.event-section-cta::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255,255,255,0.15);
+  transform: translateX(-101%);
+  transition: transform 0.3s;
+}
+
+.event-section-cta:hover::before { transform: translateX(0); }
+.event-section-cta:hover { transform: translateY(-2px); }
+.event-section-cta .arr { transition: transform 0.2s; }
+.event-section-cta:hover .arr { transform: translateX(4px); }
+
+/* ── right column: countdown + vibe ── */
+.event-section-right {}
+
+/* countdown */
+.mini-countdown-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  margin-bottom: 36px;
+}
+
+.mini-cd-block {
+  text-align: center;
+  padding: 20px 8px 14px;
+  border: 1px solid rgba(255,255,255,0.08);
+  background: rgba(255,255,255,0.04);
+  position: relative;
+  overflow: hidden;
+}
+
+.mini-cd-block::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0.05;
+}
+
+#tuesday .mini-cd-block::before { background: var(--tue-accent); }
+#ladies  .mini-cd-block::before { background: var(--lno-accent); }
+
+.mini-cd-num {
+  font-family: var(--font-display);
+  font-size: clamp(32px, 4vw, 52px);
+  line-height: 1;
+  color: var(--white);
+  display: block;
+  transition: color 0.15s;
+}
+
+.mini-cd-num.flash-tue  { color: var(--tue-accent); }
+.mini-cd-num.flash-lno  { color: var(--lno-accent); }
+
+.mini-cd-unit {
+  font-family: var(--font-cond);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.35);
+  margin-top: 5px;
+  display: block;
+}
+
+/* vibe list */
+.vibe-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.vibe-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-family: var(--font-cond);
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: rgba(255,255,255,0.7);
+}
+
+.vibe-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+#tuesday .vibe-dot { background: var(--tue-accent); }
+#ladies  .vibe-dot { background: var(--lno-accent); }
+
+/* ═══════════════════════════════════════
+   RSVP SECTION — DUAL TAB
+═══════════════════════════════════════ */
+#rsvp {
+  padding: 100px 5vw 110px;
+  background: var(--dark);
+  position: relative;
+  overflow: hidden;
+}
+
+#rsvp::before {
+  content: '';
+  position: absolute;
+  top: -300px; left: -200px;
+  width: 700px; height: 700px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(242,99,90,0.05) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+#rsvp::after {
+  content: '';
+  position: absolute;
+  bottom: -200px; right: -150px;
+  width: 500px; height: 500px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(184,122,255,0.05) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.rsvp-inner {
+  max-width: 780px;
+  position: relative;
+  z-index: 1;
+}
+
+.rsvp-header {
+  margin-bottom: 44px;
+}
+
+.rsvp-eyebrow {
+  font-family: var(--font-cond);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.38em;
+  text-transform: uppercase;
+  color: var(--brand-coral);
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.rsvp-eyebrow::after {
+  content: '';
+  width: 36px;
+  height: 1px;
+  background: var(--brand-coral);
+  opacity: 0.5;
+}
+
+.rsvp-heading {
+  font-family: var(--font-display);
+  font-size: clamp(36px, 6vw, 68px);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  line-height: 0.95;
+  color: var(--white);
+  margin-bottom: 14px;
+}
+
+.rsvp-heading .accent-coral  { color: var(--brand-coral); }
+.rsvp-heading .accent-purple { color: var(--lno-accent); }
+
+.rsvp-sub {
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 300;
+  color: var(--white-dim);
+  line-height: 1.65;
+}
+
+/* event tabs */
+.rsvp-tabs {
+  display: flex;
+  gap: 2px;
+  margin-bottom: 36px;
+}
+
+.rsvp-tab {
+  flex: 1;
+  padding: 16px 20px;
+  font-family: var(--font-cond);
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.25s, color 0.25s;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.rsvp-tab small {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  opacity: 0.7;
+  display: block;
+}
+
+.rsvp-tab.tue {
+  background: rgba(242,99,90,0.12);
+  color: rgba(242,99,90,0.6);
+  border: 1px solid rgba(242,99,90,0.15);
+}
+
+.rsvp-tab.tue.active {
+  background: var(--brand-coral);
+  color: var(--dark);
+  border-color: var(--brand-coral);
+}
+
+.rsvp-tab.lno {
+  background: rgba(184,122,255,0.08);
+  color: rgba(184,122,255,0.5);
+  border: 1px solid rgba(184,122,255,0.12);
+}
+
+.rsvp-tab.lno.active {
+  background: var(--lno-accent);
+  color: var(--dark);
+  border-color: var(--lno-accent);
+}
+
+.rsvp-tab small { display: block; }
+
+/* ── form (preserved exactly) ── */
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-field.full { grid-column: 1 / -1; }
+
+label {
+  font-family: var(--font-cond);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.5);
+}
+
+input, select, textarea {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  color: var(--white);
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 400;
+  padding: 16px 18px;
+  outline: none;
+  transition: border-color 0.25s, background 0.25s, box-shadow 0.25s;
+  width: 100%;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+input::placeholder { color: rgba(255,255,255,0.22); }
+
+input:focus, select:focus {
+  border-color: var(--active-accent, var(--brand-coral));
+  background: rgba(242,99,90,0.07);
+  box-shadow: 0 0 0 3px rgba(242,99,90,0.12);
+}
+
+input.error, select.error {
+  border-color: rgba(232,69,58,0.8);
+  box-shadow: 0 0 0 3px rgba(232,69,58,0.15);
+}
+
+.select-wrap { position: relative; }
+
+.select-wrap::after {
+  content: '▾';
+  position: absolute;
+  right: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  font-size: 14px;
+}
+
+#tuesday-form .select-wrap::after { color: var(--brand-coral); }
+#ladies-form  .select-wrap::after { color: var(--lno-accent); }
+
+select { cursor: pointer; }
+select option { background: #1A1A1A; color: var(--white); }
+
+.field-error {
+  font-family: var(--font-cond);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  color: #E8453A;
+  margin-top: 2px;
+  display: none;
+}
+
+.field-error.visible { display: block; }
+
+.form-submit-row {
+  margin-top: 32px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.btn-submit {
+  font-family: var(--font-cond);
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--dark);
+  border: none;
+  padding: 20px 44px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 100%, 14px 100%);
+  transition: background 0.2s, transform 0.2s;
+  flex-shrink: 0;
+}
+
+.btn-submit.tue-btn { background: var(--brand-coral); }
+.btn-submit.lno-btn { background: var(--lno-accent); }
+
+.btn-submit::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255,255,255,0.15);
+  transform: translateX(-101%);
+  transition: transform 0.3s ease;
+}
+
+.btn-submit:hover::before { transform: translateX(0); }
+.btn-submit:hover { transform: translateY(-2px); }
+.btn-submit:active { transform: translateY(0); }
+.btn-submit:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+.privacy-note {
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 300;
+  color: rgba(255,255,255,0.28);
+  line-height: 1.5;
+}
+
+/* form panel show/hide */
+.form-panel { display: none; }
+.form-panel.active { display: block; }
+
+/* success state */
+.form-success {
+  display: none;
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.form-success.visible { display: block; animation: scaleIn 0.5s cubic-bezier(0.34,1.56,0.64,1) both; }
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.85); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+.success-icon {
+  font-size: 52px;
+  margin-bottom: 18px;
+  display: block;
+  animation: pop 0.5s cubic-bezier(0.34,1.56,0.64,1) 0.2s both;
+}
+
+@keyframes pop {
+  from { transform: scale(0); }
+  to   { transform: scale(1); }
+}
+
+.success-title {
+  font-family: var(--font-display);
+  font-size: clamp(36px, 6vw, 60px);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--white);
+  margin-bottom: 12px;
+  line-height: 1;
+}
+
+.success-msg {
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-weight: 300;
+  color: var(--white-dim);
+  line-height: 1.7;
+  max-width: 440px;
+  margin: 0 auto 32px;
+}
+
+.success-msg strong { font-weight: 600; }
+.success-coral strong { color: var(--brand-coral); }
+.success-purple strong { color: var(--lno-accent); }
+
+.btn-success-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-cond);
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--dark);
+  padding: 16px 32px;
+  text-decoration: none;
+  clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 100%, 10px 100%);
+  transition: transform 0.2s;
+}
+
+.btn-success-back:hover { transform: translateY(-2px); }
+.btn-success-back.tue-back { background: var(--brand-coral); }
+.btn-success-back.lno-back { background: var(--lno-accent); }
+
+/* ═══════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════ */
+footer {
+  background: #0A0808;
+  border-top: 1px solid rgba(255,255,255,0.05);
+  padding: 56px 5vw 40px;
+}
+
+.footer-grid {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr;
+  gap: 48px;
+  margin-bottom: 48px;
+}
+
+@media (max-width: 760px) {
+  .footer-grid { grid-template-columns: 1fr; gap: 36px; }
+}
+
+.footer-brand-col {}
+
+.footer-wordmark {
+  font-family: var(--font-display);
+  font-size: 32px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--white);
+  line-height: 1;
+  margin-bottom: 6px;
+}
+
+.footer-wordmark span { color: var(--brand-coral); }
+
+.footer-tagline {
+  font-family: var(--font-cond);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.25);
+  margin-bottom: 20px;
+}
+
+.footer-dj {
+  font-family: var(--font-cond);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--brand-coral);
+}
+
+.footer-col-title {
+  font-family: var(--font-cond);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.3);
+  margin-bottom: 18px;
+}
+
+.footer-event-item {
+  margin-bottom: 20px;
+}
+
+.footer-event-name {
+  font-family: var(--font-cond);
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--white);
+  margin-bottom: 4px;
+}
+
+.footer-event-detail {
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 300;
+  color: rgba(255,255,255,0.4);
+  line-height: 1.6;
+}
+
+.footer-bottom {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-top: 28px;
+  border-top: 1px solid rgba(255,255,255,0.05);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.footer-copy {
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 300;
+  color: rgba(255,255,255,0.2);
+}
+
+.footer-hashtags {
+  display: flex;
+  gap: 16px;
+}
+
+.footer-hashtag {
+  font-family: var(--font-cond);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  opacity: 0.5;
+}
+
+.footer-hashtag.tue { color: var(--brand-coral); }
+.footer-hashtag.lno { color: var(--lno-accent); }
+
+/* ═══════════════════════════════════════
+   ANIMATIONS
+═══════════════════════════════════════ */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ═══════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════ */
+@media (max-width: 640px) {
+  .events-grid { grid-template-columns: 1fr; gap: 2px; }
+  .event-card { min-height: 400px; padding: 32px 24px; }
+  .card-day-num { font-size: 80px; }
+
+  .mini-countdown-grid { grid-template-columns: repeat(2, 1fr); gap: 6px; }
+
+  .form-grid { grid-template-columns: 1fr; }
+  .form-field.full { grid-column: auto; }
+
+  .rsvp-tabs { flex-direction: column; gap: 4px; }
+  .rsvp-tab { flex-direction: row; justify-content: space-between; align-items: center; }
+  .rsvp-tab small { display: none; }
+
+  #events, #tuesday, #ladies, #rsvp { padding: 72px 20px; }
+  footer { padding: 48px 20px 32px; }
+
+  .events-header { margin-bottom: 40px; }
+}
 </style>
 </head>
 <body>
 
-<!-- ═══════════ HERO ═══════════ -->
-<section id="hero">
-  <div class="hero-bg"></div>
-  <div class="hero-ring"></div>
-  <span class="side-text">Come Sing With Us · After Work · Have A Drink</span>
+<!-- ═══════════ NAV ═══════════ -->
+<nav>
+  <a href="#brand-hero" class="nav-logo">After Work <span>Anthems</span></a>
+  <ul class="nav-links">
+    <li><a href="#events">Events</a></li>
+    <li><a href="#tuesday">Tuesday Takeover</a></li>
+    <li><a href="#ladies">Ladies Night Out</a></li>
+    <li><a href="#rsvp" class="nav-cta">RSVP to Perform</a></li>
+  </ul>
+  <button class="nav-mobile-btn" aria-label="Menu" onclick="this.classList.toggle('open')">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
 
-  <div class="hero-inner">
-    <div class="brand-badge">
-      <div class="brand-badge-line"></div>
-      <span>Sounds By DJRAINN.</span>
-    </div>
+<!-- ═══════════ BRAND HERO ═══════════ -->
+<section id="brand-hero">
+  <div class="brand-hero-bg"></div>
+  <div class="brand-hero-grid"></div>
+  <div class="brand-hero-lines"></div>
 
-    <p class="hero-eyebrow">After Work Anthems</p>
+  <div class="brand-hero-inner">
+    <div class="brand-eyebrow">Chicago's After-Hours Karaoke Series</div>
 
-    <h1 class="hero-title">
-      Tuesday<br>
-      <span class="stroke-text">Takeover</span>
+    <h1 class="brand-wordmark">
+      After Work
+      <span class="line2">Anthems</span>
     </h1>
 
-    <div class="hero-subtitle-tag">wings &amp; karaoke at hue.</div>
+    <p class="brand-tagline">Come sing with us. After work. Have a drink.</p>
 
-    <div class="hero-details">
-      <strong>$10 Wings + Fries</strong> &nbsp;×&nbsp; <strong>$100 Margarita Towers</strong><br>
-      <strong>7PM – 11PM</strong> &nbsp;·&nbsp; 67 E. Cermak Rd, Chicago, IL
+    <div class="brand-pill-row">
+      <span class="brand-pill tue">✦ Tuesday Takeover</span>
+      <span class="brand-pill">at hue. Chicago</span>
+      <span class="brand-pill lno">✦ Ladies Night Out</span>
+      <span class="brand-pill">Cajun Boil · Oak Park</span>
+    </div>
+  </div>
+
+  <a href="#events" class="brand-scroll-down">
+    <span>Explore Events</span>
+    <div class="scroll-line"></div>
+  </a>
+</section>
+
+<!-- ═══════════ EVENTS HUB ═══════════ -->
+<section id="events">
+  <div class="events-header">
+    <div class="events-header-left reveal">
+      <h2 class="events-title">Our<br>Events</h2>
+      <p class="events-subtitle">Weekly karaoke nights across Chicago — each with its own energy, venue, and vibe. Pick your night.</p>
+    </div>
+  </div>
+
+  <div class="events-grid">
+
+    <!-- Tuesday Takeover -->
+    <a href="#tuesday" class="event-card tuesday reveal">
+      <div class="card-circle"></div>
+      <div class="card-day-num">TUE</div>
+      <span class="card-tag">Every Tuesday</span>
+      <div class="card-content">
+        <div class="card-night-label">Wings & Karaoke</div>
+        <h3 class="card-title">Tuesday<br>Takeover</h3>
+        <div class="card-subtitle-tag">at hue.</div>
+        <div class="card-details">
+          <strong>7PM – 11PM</strong> · Every Tuesday<br>
+          <strong>67 E. Cermak Rd</strong>, Chicago, IL<br>
+          $10 Wings+Fries · $100 Margarita Towers
+        </div>
+        <span class="card-btn">Reserve Your Slot <span class="card-btn-arrow">→</span></span>
+      </div>
+    </a>
+
+    <!-- Ladies Night Out -->
+    <a href="#ladies" class="event-card ladies reveal">
+      <div class="card-circle"></div>
+      <div class="card-day-num">THU</div>
+      <span class="card-tag">Every Thursday</span>
+      <div class="card-content">
+        <div class="card-night-label">Karaoke Night</div>
+        <h3 class="card-title">Ladies<br>Night Out</h3>
+        <div class="card-subtitle-tag">cajun boil & bar</div>
+        <div class="card-details">
+          <strong>7PM - 10PM</strong> · Every Thursday<br>
+          <strong>Cajun Boil & Bar</strong>, Oak Park, IL<br>
+          $6 Happy Hour Menu
+        </div>
+        <span class="card-btn">Reserve Your Spot <span class="card-btn-arrow">→</span></span>
+      </div>
+    </a>
+
+    <!-- Coming Soon -->
+    <div class="event-card coming-soon reveal">
+      <span class="cs-icon">✦</span>
+      <div class="cs-text">More Nights Coming</div>
+      <div class="cs-sub">Stay tuned — more events dropping soon</div>
     </div>
 
-    <div class="hero-cta">
-      <a href="#rsvp" class="btn-primary">
-        Claim Your Slot <span class="btn-arrow">→</span>
+  </div>
+</section>
+
+<!-- ═══════════ MARQUEE ═══════════ -->
+<div class="marquee-strip coral" aria-hidden="true">
+  <div class="marquee-track">
+    <span class="marquee-item">Tuesday Takeover</span><span class="marquee-sep">◆</span>
+    <span class="marquee-item">After Work Anthems</span><span class="marquee-sep">◆</span>
+    <span class="marquee-item">Wings &amp; Karaoke</span><span class="marquee-sep">◆</span>
+    <span class="marquee-item">hue. Chicago</span><span class="marquee-sep">◆</span>
+    <span class="marquee-item">Tuesday Takeover</span><span class="marquee-sep">◆</span>
+    <span class="marquee-item">After Work Anthems</span><span class="marquee-sep">◆</span>
+    <span class="marquee-item">Wings &amp; Karaoke</span><span class="marquee-sep">◆</span>
+    <span class="marquee-item">hue. Chicago</span><span class="marquee-sep">◆</span>
+  </div>
+</div>
+
+<!-- ═══════════ TUESDAY TAKEOVER ═══════════ -->
+<section id="tuesday">
+  <div class="event-section-inner">
+    <div class="event-section-left">
+      <div class="event-section-label reveal">Every Tuesday Night</div>
+      <h2 class="event-section-heading reveal">
+        Tuesday<br>
+        <span class="stroke">Takeover</span>
+      </h2>
+      <div class="event-section-subtag reveal">wings &amp; karaoke at hue.</div>
+      <div class="event-section-details reveal">
+        <strong>$10 Wings + Fries</strong> &nbsp;×&nbsp; <strong>$100 Margarita Towers</strong><br>
+        <strong>7:00 PM – 11:00 PM</strong> · Every Tuesday<br>
+        <strong>67 E. Cermak Rd</strong>, Chicago, IL<br>
+        Sounds by <strong>DJRAINN.</strong>
+      </div>
+      <a href="#rsvp" class="event-section-cta reveal" onclick="switchTab('tue')">
+        Claim Your Slot <span class="arr">→</span>
       </a>
-      <p class="hero-tagline">Step up. Grab the mic. Liquid Courage Recommended</p>
     </div>
-  </div>
 
-  <div class="scroll-hint">
-    <span>Scroll</span>
-    <div class="scroll-dot"></div>
+    <div class="event-section-right">
+      <div class="mini-countdown-grid reveal">
+        <div class="mini-cd-block">
+          <span class="mini-cd-num" id="tue-days">00</span>
+          <span class="mini-cd-unit">Days</span>
+        </div>
+        <div class="mini-cd-block">
+          <span class="mini-cd-num" id="tue-hours">00</span>
+          <span class="mini-cd-unit">Hours</span>
+        </div>
+        <div class="mini-cd-block">
+          <span class="mini-cd-num" id="tue-mins">00</span>
+          <span class="mini-cd-unit">Mins</span>
+        </div>
+        <div class="mini-cd-block">
+          <span class="mini-cd-num" id="tue-secs">00</span>
+          <span class="mini-cd-unit">Secs</span>
+        </div>
+      </div>
+
+      <ul class="vibe-list reveal">
+        <li class="vibe-item"><span class="vibe-dot"></span>Open karaoke — all genres welcome</li>
+        <li class="vibe-item"><span class="vibe-dot"></span>$10 wings + fries all night</li>
+        <li class="vibe-item"><span class="vibe-dot"></span>$100 margarita towers</li>
+        <li class="vibe-item"><span class="vibe-dot"></span>DJ sets between performers</li>
+        <li class="vibe-item"><span class="vibe-dot"></span>Step up. Grab the mic. Liquid courage recommended.</li>
+      </ul>
+    </div>
   </div>
 </section>
 
-<!-- ═══════════ COUNTDOWN ═══════════ -->
-<section id="countdown">
-  <div style="max-width: 1100px; margin: 0 auto;">
-    <div class="section-label reveal">Next Event</div>
-    <h2 class="countdown-headline reveal">Next <em>Tuesday</em><br>Starts In</h2>
+<!-- ═══════════ MARQUEE 2 ═══════════ -->
+<div class="marquee-strip purple" aria-hidden="true">
+  <div class="marquee-track" style="animation-direction: reverse;">
+    <span class="marquee-item">Ladies Night Out</span><span class="marquee-sep">◆</span>
+    <span class="marquee-item">Cajun Boil &amp; Bar</span><span class="marquee-sep">◆</span>
+    <span class="marquee-item">Oak Park, IL</span><span class="marquee-sep">◆</span>
+    <span class="marquee-item">Every Thursday</span><span class="marquee-sep">◆</span>
+    <span class="marquee-item">Karaoke Night</span><span class="marquee-sep">◆</span>
+    <span class="marquee-item">Good Food · Better Vibes</span><span class="marquee-sep">◆</span>
+    <span class="marquee-item">Ladies Night Out</span><span class="marquee-sep">◆</span>
+    <span class="marquee-item">Cajun Boil &amp; Bar</span><span class="marquee-sep">◆</span>
+    <span class="marquee-item">Oak Park, IL</span><span class="marquee-sep">◆</span>
+    <span class="marquee-item">Every Thursday</span><span class="marquee-sep">◆</span>
+    <span class="marquee-item">Karaoke Night</span><span class="marquee-sep">◆</span>
+    <span class="marquee-item">Good Food · Better Vibes</span><span class="marquee-sep">◆</span>
+  </div>
+</div>
 
-    <div class="countdown-grid reveal">
-      <div class="countdown-block">
-        <span class="countdown-num" id="cd-days">00</span>
-        <span class="countdown-unit">Days</span>
+<!-- ═══════════ LADIES NIGHT OUT ═══════════ -->
+<section id="ladies">
+  <div class="event-section-inner">
+    <div class="event-section-left">
+      <div class="event-section-label reveal">Every Thursday Night</div>
+      <h2 class="event-section-heading reveal">
+        Ladies<br>
+        <span class="stroke">Night Out</span>
+      </h2>
+      <div class="event-section-subtag reveal">karaoke at cajun boil & bar</div>
+      <div class="event-section-details reveal">
+        <strong>Every Thursday</strong> · Oak Park, IL<br>
+        <strong>Cajun Boil &amp; Bar</strong><br>
+        Good food · Better vibes · Great music
       </div>
-      <div class="countdown-block">
-        <span class="countdown-num" id="cd-hours">00</span>
-        <span class="countdown-unit">Hours</span>
-      </div>
-      <div class="countdown-block">
-        <span class="countdown-num" id="cd-mins">00</span>
-        <span class="countdown-unit">Minutes</span>
-      </div>
-      <div class="countdown-block">
-        <span class="countdown-num" id="cd-secs">00</span>
-        <span class="countdown-unit">Seconds</span>
-      </div>
+      <a href="#rsvp" class="event-section-cta reveal" onclick="switchTab('lno')">
+        Reserve Your Spot <span class="arr">→</span>
+      </a>
     </div>
 
-    <p class="countdown-caption reveal">Don't wait — slots go fast.</p>
+    <div class="event-section-right">
+      <div class="mini-countdown-grid reveal">
+        <div class="mini-cd-block">
+          <span class="mini-cd-num" id="lno-days">00</span>
+          <span class="mini-cd-unit">Days</span>
+        </div>
+        <div class="mini-cd-block">
+          <span class="mini-cd-num" id="lno-hours">00</span>
+          <span class="mini-cd-unit">Hours</span>
+        </div>
+        <div class="mini-cd-block">
+          <span class="mini-cd-num" id="lno-mins">00</span>
+          <span class="mini-cd-unit">Mins</span>
+        </div>
+        <div class="mini-cd-block">
+          <span class="mini-cd-num" id="lno-secs">00</span>
+          <span class="mini-cd-unit">Secs</span>
+        </div>
+      </div>
+
+      <ul class="vibe-list reveal">
+        <li class="vibe-item"><span class="vibe-dot"></span>A night made for the girls</li>
+        <li class="vibe-item"><span class="vibe-dot"></span>Open karaoke in Oak Park</li>
+        <li class="vibe-item"><span class="vibe-dot"></span>Cajun food &amp; cocktails</li>
+        <li class="vibe-item"><span class="vibe-dot"></span>Reserve your performance slot</li>
+        <li class="vibe-item"><span class="vibe-dot"></span>Energy. Laughs. Memories.</li>
+      </ul>
+    </div>
   </div>
 </section>
-
 
 <!-- ═══════════ RSVP ═══════════ -->
 <section id="rsvp">
   <div class="rsvp-inner">
-    <div class="section-label reveal">Karaoke Sign-Up</div>
-    <h2 class="rsvp-tagline reveal">
-      RSVP to<br>
-      <span class="accent">Perform</span>
-    </h2>
-    <p class="rsvp-sub reveal">
-      Reserve your time slot below. Show up, check in, and get ready to take the stage.<br>
-      No experience required — just bring the energy.
-    </p>
-
-    <!-- Form -->
-    <form
-    id="rsvp-form"
-    novalidate
-    autocomplete="off"
-    method="POST"
-    action="https://script.google.com/macros/s/AKfycbwkEWBReRk9-tqWZfQjbqN4LmW84r9vUI-INzQ1GzkQdzXM51DQBjvkYKsAkoSMxG6d/exec"
-    target="hidden_iframe"
-  >
-      <div class="form-grid">
-
-        <div class="form-field reveal">
-          <label for="performer-name">Who's Performing? *</label>
-          <input type="text" id="performer-name" name="performer_name" placeholder="Your legal or stage name" required>
-          <span class="field-error" id="err-performer">Please enter your name.</span>
-        </div>
-
-        <div class="form-field reveal">
-          <label for="artist-name">Who Is the Song By?</label>
-          <input type="text" id="artist-name" name="artist_name" placeholder="If different from above">
-        </div>
-
-        <div class="form-field full reveal">
-          <label for="song-title">What's the Song? *</label>
-          <input type="text" id="song-title" name="song_title" placeholder="The song you're performing" required>
-          <span class="field-error" id="err-song">Please enter a song title.</span>
-        </div>
-
-        <div class="form-field full reveal">
-          <label for="time-slot">Preferred Time Slot *</label>
-          <div class="select-wrap">
-            <select id="time-slot" name="time_slot" required>
-              <option value="" disabled selected>Choose a time slot</option>
-              <option value="8pm-9pm">8:00 PM – 9:00 PM</option>
-              <option value="9pm-10pm">9:00 PM – 10:00 PM</option>
-              <option value="10pm-11pm">10:00 PM – 11:00 PM</option>
-            </select>
-          </div>
-          <span class="field-error" id="err-slot">Please select a time slot.</span>
-        </div>
-
-        <div class="form-field reveal">
-          <label for="phone">Phone Number *</label>
-          <input type="tel" id="phone" name="phone" placeholder="(312) 000-0000" required>
-          <span class="field-error" id="err-phone">Please enter your phone number.</span>
-        </div>
-
-        <div class="form-field reveal">
-          <label for="email">Email Address *</label>
-          <input type="email" id="email" name="email" placeholder="you@example.com" required>
-          <span class="field-error" id="err-email">Please enter a valid email.</span>
-        </div>
-
-      </div><!-- /.form-grid -->
-
-      <div class="form-submit-row reveal">
-        <button type="submit" class="btn-submit" id="submit-btn">
-          Register to Perform ✦
-        </button>
-        <p class="privacy-note">Your info stays with us.<br>No spam, ever.</p>
-      </div>
-    </form>
-    <iframe name="hidden_iframe" style="display:none;"></iframe>
-
-    <!-- Success state -->
-    <div class="form-success" id="form-success">
-      <span class="success-icon">🎤</span>
-      <h3 class="success-title">You're On The List</h3>
-      <p class="success-msg">
-        See you <strong>Tuesday night</strong> at hue. Come ready to own the room.<br>
-        <strong>67 E. Cermak Rd · 7PM–11PM</strong>
+    <div class="rsvp-header reveal">
+      <div class="rsvp-eyebrow">Karaoke Sign-Up</div>
+      <h2 class="rsvp-heading">
+        RSVP to <span class="accent-coral">Perform</span>
+      </h2>
+      <p class="rsvp-sub">
+        Choose your event, pick a time slot, and reserve your spot on stage.<br>
+        Show up, check in, own the room.
       </p>
-      <a href="#hero" class="btn-primary" style="display:inline-flex;">
-        Back to Top <span class="btn-arrow">↑</span>
-      </a>
+    </div>
+
+    <!-- Event tabs -->
+    <div class="rsvp-tabs reveal">
+      <button class="rsvp-tab tue active" id="tab-tue" onclick="switchTab('tue')">
+        Tuesday Takeover
+        <small>hue. · 67 E. Cermak Rd</small>
+      </button>
+      <button class="rsvp-tab lno" id="tab-lno" onclick="switchTab('lno')">
+        Ladies Night Out
+        <small>Cajun Boil &amp; Bar · Oak Park</small>
+      </button>
+    </div>
+
+    <!-- ── TUESDAY FORM (PRESERVED EXACTLY) ── -->
+    <div class="form-panel active" id="panel-tue">
+      <form
+        id="tuesday-form"
+        novalidate
+        autocomplete="off"
+        method="POST"
+        action="https://script.google.com/macros/s/AKfycbwkEWBReRk9-tqWZfQjbqN4LmW84r9vUI-INzQ1GzkQdzXM51DQBjvkYKsAkoSMxG6d/exec"
+        target="hidden_iframe_tue"
+      >
+        <div class="form-grid">
+          <div class="form-field reveal">
+            <label for="tue-performer-name">Who's Performing? *</label>
+            <input type="text" id="tue-performer-name" name="performer_name" placeholder="Your legal or stage name" required>
+            <span class="field-error" id="tue-err-performer">Please enter your name.</span>
+          </div>
+          <div class="form-field reveal">
+            <label for="tue-artist-name">Who Is the Song By?</label>
+            <input type="text" id="tue-artist-name" name="artist_name" placeholder="If different from above">
+          </div>
+          <div class="form-field full reveal">
+            <label for="tue-song-title">What's the Song? *</label>
+            <input type="text" id="tue-song-title" name="song_title" placeholder="The song you're performing" required>
+            <span class="field-error" id="tue-err-song">Please enter a song title.</span>
+          </div>
+          <div class="form-field full reveal">
+            <label for="tue-time-slot">Preferred Time Slot *</label>
+            <div class="select-wrap">
+              <select id="tue-time-slot" name="time_slot" required>
+                <option value="" disabled selected>Choose a time slot</option>
+                <option value="8pm-9pm">8:00 PM – 9:00 PM</option>
+                <option value="9pm-10pm">9:00 PM – 10:00 PM</option>
+                <option value="10pm-11pm">10:00 PM – 11:00 PM</option>
+              </select>
+            </div>
+            <span class="field-error" id="tue-err-slot">Please select a time slot.</span>
+          </div>
+          <div class="form-field reveal">
+            <label for="tue-phone">Phone Number *</label>
+            <input type="tel" id="tue-phone" name="phone" placeholder="(312) 000-0000" required>
+            <span class="field-error" id="tue-err-phone">Please enter your phone number.</span>
+          </div>
+          <div class="form-field reveal">
+            <label for="tue-email">Email Address *</label>
+            <input type="email" id="tue-email" name="email" placeholder="you@example.com" required>
+            <span class="field-error" id="tue-err-email">Please enter a valid email.</span>
+          </div>
+        </div>
+        <div class="form-submit-row reveal">
+          <button type="submit" class="btn-submit tue-btn" id="tue-submit-btn">
+            Reserve My Spot ✦
+          </button>
+          <p class="privacy-note">Your info stays with us.<br>No spam, ever.</p>
+        </div>
+      </form>
+      <iframe name="hidden_iframe_tue" style="display:none;"></iframe>
+
+      <div class="form-success success-coral" id="tue-form-success">
+        <span class="success-icon">🎤</span>
+        <h3 class="success-title">You're On The List</h3>
+        <p class="success-msg">
+          See you <strong>Tuesday night</strong> at hue. Come ready to own the room.<br>
+          <strong>67 E. Cermak Rd · 7PM–11PM</strong>
+        </p>
+        <a href="#brand-hero" class="btn-success-back tue-back">Back to Top ↑</a>
+      </div>
+    </div>
+
+    <!-- ── LADIES NIGHT FORM ── -->
+    <div class="form-panel" id="panel-lno">
+      <form
+        id="ladies-form"
+        novalidate
+        autocomplete="off"
+        method="POST"
+        action="https://script.google.com/macros/s/AKfycbwkEWBReRk9-tqWZfQjbqN4LmW84r9vUI-INzQ1GzkQdzXM51DQBjvkYKsAkoSMxG6d/exec"
+        target="hidden_iframe_lno"
+      >
+        <!-- hidden field to identify event -->
+        <input type="hidden" name="event" value="Ladies Night Out - Cajun Boil & Bar">
+        <div class="form-grid">
+          <div class="form-field reveal">
+            <label for="lno-performer-name">Who's Performing? *</label>
+            <input type="text" id="lno-performer-name" name="performer_name" placeholder="Your legal or stage name" required>
+            <span class="field-error" id="lno-err-performer">Please enter your name.</span>
+          </div>
+          <div class="form-field reveal">
+            <label for="lno-artist-name">Who Is the Song By?</label>
+            <input type="text" id="lno-artist-name" name="artist_name" placeholder="If different from above">
+          </div>
+          <div class="form-field full reveal">
+            <label for="lno-song-title">What's the Song? *</label>
+            <input type="text" id="lno-song-title" name="song_title" placeholder="The song you're performing" required>
+            <span class="field-error" id="lno-err-song">Please enter a song title.</span>
+          </div>
+          <div class="form-field reveal">
+            <label for="lno-phone">Phone Number *</label>
+            <input type="tel" id="lno-phone" name="phone" placeholder="(312) 000-0000" required>
+            <span class="field-error" id="lno-err-phone">Please enter your phone number.</span>
+          </div>
+          <div class="form-field reveal">
+            <label for="lno-email">Email Address *</label>
+            <input type="email" id="lno-email" name="email" placeholder="you@example.com" required>
+            <span class="field-error" id="lno-err-email">Please enter a valid email.</span>
+          </div>
+        </div>
+        <div class="form-submit-row reveal">
+          <button type="submit" class="btn-submit lno-btn" id="lno-submit-btn">
+            Reserve My Spot ✦
+          </button>
+          <p class="privacy-note">Your info stays with us.<br>No spam, ever.</p>
+        </div>
+      </form>
+      <iframe name="hidden_iframe_lno" style="display:none;"></iframe>
+
+      <div class="form-success success-purple" id="lno-form-success">
+        <span class="success-icon">🎤</span>
+        <h3 class="success-title">You're On The List</h3>
+        <p class="success-msg">
+          See you <strong>Thursday night</strong> at Cajun Boil &amp; Bar, Oak Park.<br>
+          <strong>Come ready to shine.</strong>
+        </p>
+        <a href="#brand-hero" class="btn-success-back lno-back">Back to Top ↑</a>
+      </div>
     </div>
 
   </div>
@@ -1012,146 +1801,228 @@
 
 <!-- ═══════════ FOOTER ═══════════ -->
 <footer>
-  <div class="footer-top">
-    <div class="footer-brand">
-      Tuesday Takeover
-      <small>After Work Anthems</small>
+  <div class="footer-grid">
+    <div class="footer-brand-col">
+      <div class="footer-wordmark">After Work <span>Anthems</span></div>
+      <div class="footer-tagline">Chicago's After-Hours Karaoke Series</div>
+      <div class="footer-dj">Sounds by DJRAINN.</div>
     </div>
-    <div class="footer-details">
-      <p>hue. Chicago</p>
-      <p>67 E. Cermak Rd, Chicago, IL</p>
-      <p>Every Tuesday · 7PM – 11PM</p>
-      <p>$10 Wings+Fries · $100 Margarita Towers</p>
+
+    <div>
+      <div class="footer-col-title">Events</div>
+      <div class="footer-event-item">
+        <div class="footer-event-name">Tuesday Takeover</div>
+        <div class="footer-event-detail">Every Tuesday · 7PM–11PM<br>hue. · 67 E. Cermak Rd, Chicago</div>
+      </div>
+      <div class="footer-event-item">
+        <div class="footer-event-name">Ladies Night Out</div>
+        <div class="footer-event-detail">Every Thursday · 7PM–10PM<br>Cajun Boil &amp; Bar · Oak Park, IL</div>
+      </div>
+    </div>
+
+    <div>
+      <div class="footer-col-title">Get Involved</div>
+      <div class="footer-event-item">
+        <div class="footer-event-detail">
+          RSVP to perform at any of our weekly events. Show up, check in, take the stage.
+        </div>
+      </div>
+      <a href="#rsvp" style="display:inline-flex;align-items:center;gap:8px;font-family:var(--font-cond);font-size:13px;font-weight:800;letter-spacing:0.2em;text-transform:uppercase;color:var(--dark);background:var(--brand-coral);padding:12px 24px;text-decoration:none;clip-path:polygon(0 0,calc(100% - 8px) 0,100% 100%,8px 100%);margin-top:8px;">
+        RSVP Now →
+      </a>
     </div>
   </div>
+
   <div class="footer-bottom">
     <span class="footer-copy">© 2025 After Work Anthems. All rights reserved.</span>
-    <span class="footer-hashtag">#TuesdayTakeover</span>
+    <div class="footer-hashtags">
+      <span class="footer-hashtag tue">#TuesdayTakeover</span>
+      <span class="footer-hashtag lno">#LadiesNightOut</span>
+    </div>
   </div>
 </footer>
 
 <!-- ═══════════ SCRIPTS ═══════════ -->
 <script>
-/* ─── FIXED COUNTDOWN TIMER: APRIL 28, 2026 AT 7PM CHICAGO TIME ─── */
-(function () {
-  const targetDate = new Date('2026-04-29T00:00:00Z'); 
-  // 7:00 PM in Chicago on April 28, 2026 = 12:00 AM UTC on April 29, 2026 (during daylight saving time)
+/* ─── TAB SWITCHER ─── */
+function switchTab(which) {
+  document.getElementById('tab-tue').classList.toggle('active', which === 'tue');
+  document.getElementById('tab-lno').classList.toggle('active', which === 'lno');
+  document.getElementById('panel-tue').classList.toggle('active', which === 'tue');
+  document.getElementById('panel-lno').classList.toggle('active', which === 'lno');
+}
 
-  function pad(n) {
-    return String(n).padStart(2, '0');
+/* ─── COUNTDOWN SHARED ─── */
+(function () {
+  function pad(n) { return String(n).padStart(2, '0'); }
+
+  function getChicagoOffset() {
+    const now = new Date();
+    const utcH = parseInt(now.toLocaleString('en-US', { timeZone: 'UTC', hour: '2-digit', hour12: false }));
+    const chiH = parseInt(now.toLocaleString('en-US', { timeZone: 'America/Chicago', hour: '2-digit', hour12: false }));
+    return utcH - chiH;
   }
 
-  let prevSecs = null;
+  function getChicagoNowParts() {
+    const now = new Date();
+    const offset = getChicagoOffset();
+    const chiMs = now.getTime() + (now.getTimezoneOffset() * 60000) - (offset * 3600000);
+    const chiDate = new Date(chiMs);
 
-  function setUnit(id, val, isSeconds) {
-    const el = document.getElementById(id);
-    if (!el) return;
+    return { now, offset, chiDate };
+  }
 
-    if (el.textContent !== val) {
-      el.textContent = val;
+  function getNextWeekday(targetDay, startHour, startMinute = 0, notBeforeDate = null) {
+    // targetDay: 0=Sun, 2=Tue, 4=Thu
+    const { now, offset, chiDate } = getChicagoNowParts();
 
-      if (isSeconds) {
-        el.classList.add('flash');
-        setTimeout(() => el.classList.remove('flash'), 150);
+    const day  = chiDate.getUTCDay();
+    const hour = chiDate.getUTCHours();
+    const min  = chiDate.getUTCMinutes();
+    const sec  = chiDate.getUTCSeconds();
+
+    let daysUntil = (targetDay - day + 7) % 7;
+
+    if (daysUntil === 0) {
+      if (
+        hour > startHour ||
+        (hour === startHour && min > startMinute) ||
+        (hour === startHour && min === startMinute && sec > 0)
+      ) {
+        daysUntil = 7;
       }
     }
+
+    const target = new Date(chiDate);
+    target.setUTCDate(chiDate.getUTCDate() + daysUntil);
+    target.setUTCHours(startHour, startMinute, 0, 0);
+
+    // Enforce first allowed event date
+    if (notBeforeDate) {
+      const firstAllowed = new Date(notBeforeDate);
+
+      if (target < firstAllowed) {
+        target.setTime(firstAllowed.getTime());
+      }
+    }
+
+    return new Date(target.getTime() - (now.getTimezoneOffset() * 60000) + (offset * 3600000));
+  }
+
+  function setNum(id, val, cls) {
+    const el = document.getElementById(id);
+    if (!el || el.textContent === val) return;
+    el.textContent = val;
+    el.classList.add(cls);
+    setTimeout(() => el.classList.remove(cls), 150);
   }
 
   function tick() {
-    const now = new Date();
-    let diff = targetDate - now;
+    const nowMs = Date.now();
 
-    if (diff < 0) diff = 0;
+    // Tuesday 7PM, starting April 28, 2026
+    const firstTuesday = new Date(Date.UTC(2026, 3, 28, 19, 0, 0)); 
+    // months are 0-based, so 3 = April
 
-    const days = Math.floor(diff / 86400000);
-    const hours = Math.floor((diff % 86400000) / 3600000);
-    const mins = Math.floor((diff % 3600000) / 60000);
-    const secs = Math.floor((diff % 60000) / 1000);
+    const tue = getNextWeekday(2, 19, 0, firstTuesday);
+    const diffTue = Math.max(0, tue - nowMs);
 
-    setUnit('cd-days', pad(days));
-    setUnit('cd-hours', pad(hours));
-    setUnit('cd-mins', pad(mins));
-    setUnit('cd-secs', pad(secs), true);
+    setNum('tue-days',  pad(Math.floor(diffTue / 86400000)),              'flash-tue');
+    setNum('tue-hours', pad(Math.floor((diffTue % 86400000) / 3600000)), 'flash-tue');
+    setNum('tue-mins',  pad(Math.floor((diffTue % 3600000) / 60000)),    'flash-tue');
+    setNum('tue-secs',  pad(Math.floor((diffTue % 60000) / 1000)),       'flash-tue');
+
+    // Thursday 8PM
+    const lno = getNextWeekday(4, 20);
+    const diffLno = Math.max(0, lno - nowMs);
+
+    setNum('lno-days',  pad(Math.floor(diffLno / 86400000)),              'flash-lno');
+    setNum('lno-hours', pad(Math.floor((diffLno % 86400000) / 3600000)), 'flash-lno');
+    setNum('lno-mins',  pad(Math.floor((diffLno % 3600000) / 60000)),    'flash-lno');
+    setNum('lno-secs',  pad(Math.floor((diffLno % 60000) / 1000)),       'flash-lno');
   }
 
   tick();
   setInterval(tick, 1000);
 })();
-
-
 /* ─── SCROLL REVEAL ─── */
 (function () {
   const els = document.querySelectorAll('.reveal');
   const obs = new IntersectionObserver((entries) => {
     entries.forEach((e, i) => {
       if (e.isIntersecting) {
-        e.target.style.transitionDelay = (i * 0.06) + 's';
+        e.target.style.transitionDelay = (i % 4 * 0.07) + 's';
         e.target.classList.add('in-view');
         obs.unobserve(e.target);
       }
     });
-  }, { threshold: 0.12 });
+  }, { threshold: 0.1 });
   els.forEach(el => obs.observe(el));
 })();
 
-
-/* ─── FORM VALIDATION & SUBMIT ─── */
+/* ─── FORM VALIDATION ─── */
 (function () {
-  const form = document.getElementById('rsvp-form');
-  const success = document.getElementById('form-success');
-  const submitBtn = document.getElementById('submit-btn');
-
-  function show(errId)  { document.getElementById(errId).classList.add('visible'); }
-  function hide(errId)  { document.getElementById(errId).classList.remove('visible'); }
-  function markErr(el)  { el.classList.add('error'); }
-  function clearErr(el) { el.classList.remove('error'); }
-
   function validateEmail(v) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
   function validatePhone(v) { return v.replace(/\D/g,'').length >= 10; }
 
-  form.querySelectorAll('input, select').forEach(el => {
-    el.addEventListener('input', () => { clearErr(el); });
-    el.addEventListener('change', () => { clearErr(el); });
-  });
+  function setupForm(prefix, formId, successId, submitId, iframeName) {
+    const form    = document.getElementById(formId);
+    const success = document.getElementById(successId);
+    const btn     = document.getElementById(submitId);
+    if (!form) return;
 
-  form.addEventListener('submit', function (e) {
-    e.preventDefault();
-    let valid = true;
+    const show = id => { const el = document.getElementById(id); if(el) el.classList.add('visible'); };
+    const hide = id => { const el = document.getElementById(id); if(el) el.classList.remove('visible'); };
+    const markErr  = el => el.classList.add('error');
+    const clearErr = el => el.classList.remove('error');
 
-    const performer = document.getElementById('performer-name');
-    const song = document.getElementById('song-title');
-    const slot = document.getElementById('time-slot');
-    const phone = document.getElementById('phone');
-    const email = document.getElementById('email');
+    form.querySelectorAll('input, select').forEach(el => {
+      el.addEventListener('input',  () => clearErr(el));
+      el.addEventListener('change', () => clearErr(el));
+    });
 
-    if (!performer.value.trim()) { markErr(performer); show('err-performer'); valid = false; }
-    else { clearErr(performer); hide('err-performer'); }
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      let valid = true;
 
-    if (!song.value.trim()) { markErr(song); show('err-song'); valid = false; }
-    else { clearErr(song); hide('err-song'); }
+      const performer = document.getElementById(prefix + '-performer-name');
+      const song      = document.getElementById(prefix + '-song-title');
+      const slot      = document.getElementById(prefix + '-time-slot');
+      const phone     = document.getElementById(prefix + '-phone');
+      const email     = document.getElementById(prefix + '-email');
 
-    if (!slot.value) { markErr(slot); show('err-slot'); valid = false; }
-    else { clearErr(slot); hide('err-slot'); }
+      if (!performer.value.trim()) { markErr(performer); show(prefix+'-err-performer'); valid=false; }
+      else { clearErr(performer); hide(prefix+'-err-performer'); }
 
-    if (!validatePhone(phone.value)) { markErr(phone); show('err-phone'); valid = false; }
-    else { clearErr(phone); hide('err-phone'); }
+      if (!song.value.trim()) { markErr(song); show(prefix+'-err-song'); valid=false; }
+      else { clearErr(song); hide(prefix+'-err-song'); }
 
-    if (!validateEmail(email.value)) { markErr(email); show('err-email'); valid = false; }
-    else { clearErr(email); hide('err-email'); }
+      if (!slot.value) { markErr(slot); show(prefix+'-err-slot'); valid=false; }
+      else { clearErr(slot); hide(prefix+'-err-slot'); }
 
-    if (!valid) return;
+      if (!validatePhone(phone.value)) { markErr(phone); show(prefix+'-err-phone'); valid=false; }
+      else { clearErr(phone); hide(prefix+'-err-phone'); }
 
-    submitBtn.disabled = true;
-    submitBtn.textContent = 'Submitting...';
+      if (!validateEmail(email.value)) { markErr(email); show(prefix+'-err-email'); valid=false; }
+      else { clearErr(email); hide(prefix+'-err-email'); }
 
-    form.submit();
+      if (!valid) return;
 
-    setTimeout(() => {
-      form.style.display = 'none';
-      success.classList.add('visible');
-      success.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }, 800);
-  });
+      btn.disabled = true;
+      btn.textContent = 'Submitting...';
+
+      form.submit();
+
+      setTimeout(() => {
+        form.style.display = 'none';
+        success.classList.add('visible');
+        success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }, 800);
+    });
+  }
+
+  setupForm('tue', 'tuesday-form', 'tue-form-success', 'tue-submit-btn', 'hidden_iframe_tue');
+  setupForm('lno', 'ladies-form',  'lno-form-success', 'lno-submit-btn', 'hidden_iframe_lno');
 })();
 </script>
 
