@@ -1594,35 +1594,54 @@ footer {
 (function () {
   function pad(n) { return String(n).padStart(2, '0'); }
 
-  function getChicagoDate() {
-    const now = new Date();
-    const chicagoString = now.toLocaleString('en-US', { timeZone: 'America/Chicago' });
-    return new Date(chicagoString);
+  function getChicagoNow() {
+    const parts = new Intl.DateTimeFormat('en-US', {
+      timeZone: 'America/Chicago',
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit',
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit',
+      hour12: false
+    }).formatToParts(new Date()).reduce((acc, part) => {
+      if (part.type !== 'literal') acc[part.type] = part.value;
+      return acc;
+    }, {});
+
+    return new Date(
+      Number(parts.year),
+      Number(parts.month) - 1,
+      Number(parts.day),
+      Number(parts.hour),
+      Number(parts.minute),
+      Number(parts.second)
+    );
   }
 
-  function getNextWeekday(targetDay, hour) {
-    const chicagoNow = getChicagoDate();
-    const day = chicagoNow.getDay();
-    const currentHour = chicagoNow.getHours();
-    const currentMin = chicagoNow.getMinutes();
-    const currentSec = chicagoNow.getSeconds();
+  function getRollingWeeklyTarget(anchorYear, anchorMonthIndex, anchorDay, hour) {
+    const now = getChicagoNow();
+    const anchor = new Date(anchorYear, anchorMonthIndex, anchorDay, hour, 0, 0, 0);
+    const weekMs = 7 * 24 * 60 * 60 * 1000;
 
-    let daysUntil = (targetDay - day + 7) % 7;
-    if (daysUntil === 0) {
-      const pastStart = currentHour > hour || (currentHour === hour && (currentMin > 0 || currentSec > 0));
-      if (pastStart) daysUntil = 7;
+    if (now <= anchor) return anchor;
+
+    const elapsed = now - anchor;
+    const weeksPassed = Math.floor(elapsed / weekMs);
+    let target = new Date(anchor.getTime() + weeksPassed * weekMs);
+
+    if (target <= now) {
+      target = new Date(target.getTime() + weekMs);
     }
 
-    const target = new Date(chicagoNow);
-    target.setDate(chicagoNow.getDate() + daysUntil);
-    target.setHours(hour, 0, 0, 0);
     return target;
   }
 
-  function updateCountdown(prefix, targetDay, hour, flashClass) {
-    const now = getChicagoDate();
-    const target = getNextWeekday(targetDay, hour);
-    const diff = target - now;
+  function updateCountdown(prefix, target, flashClass) {
+    const now = getChicagoNow();
+    let diff = target - now;
+
+    if (diff < 0) diff = 0;
 
     const days = Math.floor(diff / 86400000);
     const hours = Math.floor((diff % 86400000) / 3600000);
@@ -1640,17 +1659,22 @@ footer {
     ids.hours.textContent = pad(hours);
     ids.mins.textContent = pad(mins);
 
-    if (ids.secs.textContent !== pad(secs)) {
-      ids.secs.textContent = pad(secs);
+    const secsText = pad(secs);
+    if (ids.secs.textContent !== secsText) {
+      ids.secs.textContent = secsText;
       ids.secs.classList.add(flashClass);
       setTimeout(() => ids.secs.classList.remove(flashClass), 150);
     }
   }
 
   function tickAll() {
-    updateCountdown('tue', 2, 19, 'flash-tue'); // Tuesday 7PM
-    updateCountdown('wed', 3, 19, 'flash-wed'); // Wednesday 7PM
-    updateCountdown('lno', 4, 19, 'flash-lno'); // Thursday 7PM
+    const tuesdayTarget = getRollingWeeklyTarget(2026, 3, 28, 19);   // Apr 28, 2026 then every Tuesday
+    const wednesdayTarget = getRollingWeeklyTarget(2026, 3, 29, 19); // Apr 29, 2026 then every Wednesday
+    const thursdayTarget = getRollingWeeklyTarget(2026, 3, 23, 19);  // Apr 23, 2026 then every Thursday
+
+    updateCountdown('tue', tuesdayTarget, 'flash-tue');
+    updateCountdown('wed', wednesdayTarget, 'flash-wed');
+    updateCountdown('lno', thursdayTarget, 'flash-lno');
   }
 
   tickAll();
