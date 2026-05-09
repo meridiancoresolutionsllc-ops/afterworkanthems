@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>After Work Anthems — Chicago's After-Hours Karaoke Series</title>
-<meta name="description" content="After Work Anthems hosts weekly karaoke events across Chicago: Tuesday Takeover at hue., Wildcard Wednesdays at Copper Still, and Ladies Night Out at Cajun Boil & Bar.">
+<meta name="description" content="After Work Anthems hosts weekly karaoke events across Chicago: Tuesday Takeover at hue. and Wildcard Wednesdays at Copper Still.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=Barlow+Condensed:ital,wght@0,300;0,400;0,600;0,700;0,800;0,900;1,600;1,700&display=swap" rel="stylesheet">
@@ -20,8 +20,6 @@
 
   --tue-bg:        #0D0A09;
   --tue-accent:    #F2635A;
-  --lno-bg:        #08080F;
-  --lno-accent:    #B87AFF;
   --wed-bg:        #0D1018;
   --wed-accent:    #9CB5FF;
 
@@ -134,7 +132,6 @@ nav {
   background:
     radial-gradient(ellipse 70% 50% at 20% 80%, rgba(242,99,90,0.18) 0%, transparent 60%),
     radial-gradient(ellipse 55% 45% at 82% 22%, rgba(156,181,255,0.15) 0%, transparent 60%),
-    radial-gradient(ellipse 45% 45% at 90% 8%, rgba(184,122,255,0.14) 0%, transparent 60%),
     radial-gradient(ellipse 100% 100% at 50% 50%, #0F0D0C 20%, #080707 100%);
 }
 
@@ -237,7 +234,7 @@ nav {
   transform: translateX(-50%);
   width: 0;
   height: 3px;
-  background: linear-gradient(90deg, var(--brand-coral), var(--brand-gold), var(--lno-accent));
+  background: linear-gradient(90deg, var(--brand-coral), var(--brand-gold));
   animation: underline-expand 0.9s ease 0.8s forwards;
 }
 
@@ -278,7 +275,6 @@ nav {
 
 .brand-pill.tue { border-color: rgba(242,99,90,0.4); color: var(--brand-coral); }
 .brand-pill.wed { border-color: rgba(212,168,83,0.4); color: var(--brand-gold-lt); }
-.brand-pill.lno { border-color: rgba(184,122,255,0.4); color: var(--lno-accent); }
 
 .brand-scroll-down {
   position: absolute;
@@ -416,13 +412,6 @@ nav {
     #101521;
 }
 
-.event-card.ladies {
-  background:
-    radial-gradient(ellipse 70% 50% at 70% 10%, rgba(184,122,255,0.5) 0%, transparent 60%),
-    radial-gradient(ellipse 60% 80% at 10% 90%, rgba(120,60,220,0.25) 0%, transparent 60%),
-    #0E0915;
-}
-
 .card-circle {
   position: absolute;
   width: 400px;
@@ -460,7 +449,6 @@ nav {
 
 .tuesday .card-tag { background: var(--brand-coral); }
 .wednesday .card-tag { background: var(--brand-gold); }
-.ladies .card-tag { background: var(--lno-accent); }
 
 .card-day-num {
   font-family: var(--font-display);
@@ -490,7 +478,6 @@ nav {
 
 .tuesday .card-night-label { color: rgba(242,99,90,0.8); }
 .wednesday .card-night-label { color: rgba(156,181,255,0.85); }
-.ladies .card-night-label { color: rgba(184,122,255,0.8); }
 
 .card-title {
   font-family: var(--font-display);
@@ -517,7 +504,6 @@ nav {
 
 .tuesday .card-subtitle-tag { background: rgba(242,99,90,0.9); }
 .wednesday .card-subtitle-tag { background: rgba(156,181,255,0.92); }
-.ladies .card-subtitle-tag { background: rgba(184,122,255,0.9); }
 
 .card-details {
   font-family: var(--font-cond);
@@ -550,7 +536,6 @@ nav {
 
 .tuesday .card-btn { background: var(--brand-coral); }
 .wednesday .card-btn { background: var(--brand-gold); }
-.ladies .card-btn { background: var(--lno-accent); }
 
 .card-btn:hover { transform: translateY(-2px); filter: brightness(1.1); }
 .card-btn-arrow { transition: transform 0.2s; }
@@ -563,7 +548,6 @@ nav {
 }
 .marquee-strip.coral { background: var(--brand-coral); }
 .marquee-strip.gold { background: var(--brand-gold); }
-.marquee-strip.purple { background: var(--lno-accent); }
 
 .marquee-track {
   display: inline-flex;
@@ -585,7 +569,7 @@ nav {
   to   { transform: translateX(-50%); }
 }
 
-#tuesday, #wednesday, #ladies {
+#tuesday, #wednesday {
   padding: 100px 5vw;
   position: relative;
   overflow: hidden;
@@ -654,8 +638,6 @@ nav {
 #tuesday .event-section-label::after { background: var(--tue-accent); }
 #wednesday .event-section-label { color: var(--brand-gold); }
 #wednesday .event-section-label::after { background: var(--brand-gold); }
-#ladies .event-section-label { color: var(--lno-accent); }
-#ladies .event-section-label::after { background: var(--lno-accent); }
 
 .event-section-heading {
   font-family: var(--font-display);
@@ -685,7 +667,6 @@ nav {
 }
 #tuesday .event-section-subtag { background: rgba(242,99,90,0.9); }
 #wednesday .event-section-subtag { background: rgba(156,181,255,0.92); }
-#ladies .event-section-subtag { background: rgba(184,122,255,0.9); }
 
 .event-section-details {
   font-family: var(--font-cond);
@@ -718,7 +699,6 @@ nav {
 }
 #tuesday .event-section-cta { background: var(--tue-accent); }
 #wednesday .event-section-cta { background: var(--brand-gold); }
-#ladies .event-section-cta { background: var(--lno-accent); }
 .event-section-cta::before {
   content: '';
   position: absolute;
@@ -754,7 +734,6 @@ nav {
 }
 #tuesday .mini-cd-block::before { background: var(--tue-accent); }
 #wednesday .mini-cd-block::before { background: var(--wed-accent); }
-#ladies .mini-cd-block::before { background: var(--lno-accent); }
 
 .mini-cd-num {
   font-family: var(--font-display);
@@ -766,7 +745,6 @@ nav {
 }
 .mini-cd-num.flash-tue { color: var(--tue-accent); }
 .mini-cd-num.flash-wed { color: var(--brand-gold-lt); }
-.mini-cd-num.flash-lno { color: var(--lno-accent); }
 
 .mini-cd-unit {
   font-family: var(--font-cond);
@@ -803,7 +781,6 @@ nav {
 }
 #tuesday .vibe-dot { background: var(--tue-accent); }
 #wednesday .vibe-dot { background: var(--brand-gold); }
-#ladies .vibe-dot { background: var(--lno-accent); }
 
 #rsvp {
   padding: 100px 5vw 110px;
@@ -1142,7 +1119,6 @@ footer {
 }
 .footer-hashtag.tue { color: var(--brand-coral); }
 .footer-hashtag.wed { color: var(--brand-gold-lt); }
-.footer-hashtag.lno { color: var(--lno-accent); }
 
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(24px); }
@@ -1170,7 +1146,7 @@ footer {
   .form-grid { grid-template-columns: 1fr; }
   .form-field.full { grid-column: auto; }
 
-  #events, #tuesday, #wednesday, #ladies, #rsvp { padding: 72px 20px; }
+  #events, #tuesday, #wednesday, #rsvp { padding: 72px 20px; }
   footer { padding: 48px 20px 32px; }
   .events-header { margin-bottom: 40px; }
 }
@@ -1184,7 +1160,6 @@ footer {
     <li><a href="#events">Events</a></li>
     <li><a href="#tuesday">Tuesday</a></li>
     <li><a href="#wednesday">Wednesday</a></li>
-    <li><a href="#ladies">Thursday</a></li>
     <li><a href="#rsvp" class="nav-cta">RSVP to Perform</a></li>
   </ul>
 </nav>
@@ -1204,7 +1179,6 @@ footer {
     <div class="brand-pill-row">
       <span class="brand-pill tue">✦ Tuesday Takeover at hue. · Chicago</span>
       <span class="brand-pill wed">✦ Wildcard Wednesdays at Copper Still · Homewood</span>
-      <span class="brand-pill lno">✦ Ladies Night Out at Cajun Boil · Oak Park</span>
     </div>
   </div>
 
@@ -1252,23 +1226,6 @@ footer {
           <strong>7PM – 11PM</strong> · Every Wednesday<br>
           <strong>1961 Ridge Rd</strong>, Homewood, IL<br>
           Spades · Chess · Checkers · Jenga & more
-        </div>
-        <span class="card-btn">Reserve Your Spot <span class="card-btn-arrow">→</span></span>
-      </div>
-    </a>
-
-    <a href="#ladies" class="event-card ladies reveal">
-      <div class="card-circle"></div>
-      <div class="card-day-num">THU</div>
-      <span class="card-tag">Every Thursday</span>
-      <div class="card-content">
-        <div class="card-night-label">Karaoke Night</div>
-        <h3 class="card-title">Ladies<br>Night Out</h3>
-        <div class="card-subtitle-tag">cajun boil & bar</div>
-        <div class="card-details">
-          <strong>7PM – 10PM</strong> · Every Thursday<br>
-          <strong>Cajun Boil & Bar</strong>, Oak Park, IL<br>
-          $6 Happy Hour Menu
         </div>
         <span class="card-btn">Reserve Your Spot <span class="card-btn-arrow">→</span></span>
       </div>
@@ -1381,57 +1338,6 @@ footer {
   </div>
 </section>
 
-<div class="marquee-strip purple" aria-hidden="true">
-  <div class="marquee-track" style="animation-direction: reverse;">
-    <span class="marquee-item">Ladies Night Out</span><span class="marquee-sep">◆</span>
-    <span class="marquee-item">Cajun Boil &amp; Bar</span><span class="marquee-sep">◆</span>
-    <span class="marquee-item">Oak Park, IL</span><span class="marquee-sep">◆</span>
-    <span class="marquee-item">Every Thursday</span><span class="marquee-sep">◆</span>
-    <span class="marquee-item">Karaoke Night</span><span class="marquee-sep">◆</span>
-    <span class="marquee-item">Good Food · Better Vibes</span><span class="marquee-sep">◆</span>
-    <span class="marquee-item">Ladies Night Out</span><span class="marquee-sep">◆</span>
-    <span class="marquee-item">Cajun Boil &amp; Bar</span><span class="marquee-sep">◆</span>
-  </div>
-</div>
-
-<section id="ladies">
-  <div class="event-section-inner">
-    <div class="event-section-left">
-      <div class="event-section-label reveal">Every Thursday Night</div>
-      <h2 class="event-section-heading reveal">
-        Ladies<br>
-        <span class="stroke">Night Out</span>
-      </h2>
-      <div class="event-section-subtag reveal">karaoke at cajun boil &amp; bar</div>
-      <div class="event-section-details reveal">
-        <strong>7:00 PM – 10:00 PM</strong> · Every Thursday<br>
-        <strong>Cajun Boil &amp; Bar</strong>, Oak Park, IL<br>
-        Good food · Better vibes · Great music
-      </div>
-      <a href="#rsvp" class="event-section-cta reveal">
-        Reserve Your Spot <span class="arr">→</span>
-      </a>
-    </div>
-
-    <div class="event-section-right">
-      <div class="mini-countdown-grid reveal">
-        <div class="mini-cd-block"><span class="mini-cd-num" id="lno-days">00</span><span class="mini-cd-unit">Days</span></div>
-        <div class="mini-cd-block"><span class="mini-cd-num" id="lno-hours">00</span><span class="mini-cd-unit">Hours</span></div>
-        <div class="mini-cd-block"><span class="mini-cd-num" id="lno-mins">00</span><span class="mini-cd-unit">Mins</span></div>
-        <div class="mini-cd-block"><span class="mini-cd-num" id="lno-secs">00</span><span class="mini-cd-unit">Secs</span></div>
-      </div>
-
-      <ul class="vibe-list reveal">
-        <li class="vibe-item"><span class="vibe-dot"></span>A night made for the girls</li>
-        <li class="vibe-item"><span class="vibe-dot"></span>Open karaoke in Oak Park</li>
-        <li class="vibe-item"><span class="vibe-dot"></span>Cajun food &amp; cocktails</li>
-        <li class="vibe-item"><span class="vibe-dot"></span>Reserve your performance slot</li>
-        <li class="vibe-item"><span class="vibe-dot"></span>Energy. Laughs. Memories.</li>
-      </ul>
-    </div>
-  </div>
-</section>
-
 <section id="rsvp">
   <div class="rsvp-inner">
     <div class="rsvp-header reveal">
@@ -1461,7 +1367,6 @@ footer {
               <option value="" disabled selected>Choose your karaoke night</option>
               <option value="Tuesday Takeover - hue.">Tuesday Takeover — hue.</option>
               <option value="Wildcard Wednesdays - Copper Still">Wildcard Wednesdays — Copper Still</option>
-              <option value="Ladies Night Out - Cajun Boil &amp; Bar">Ladies Night Out — Cajun Boil &amp; Bar</option>
             </select>
           </div>
           <span class="field-error" id="err-event">Please select an event.</span>
@@ -1548,10 +1453,6 @@ footer {
         <div class="footer-event-name">Wildcard Wednesdays</div>
         <div class="footer-event-detail">Every Wednesday · 7PM–11PM<br>Copper Still · 1961 Ridge Rd, Homewood, IL</div>
       </div>
-      <div class="footer-event-item">
-        <div class="footer-event-name">Ladies Night Out</div>
-        <div class="footer-event-detail">Every Thursday · 7PM–10PM<br>Cajun Boil &amp; Bar · Oak Park, IL</div>
-      </div>
     </div>
 
     <div>
@@ -1572,7 +1473,6 @@ footer {
     <div class="footer-hashtags">
       <span class="footer-hashtag tue">#TuesdayTakeover</span>
       <span class="footer-hashtag wed">#WildcardWednesdays</span>
-      <span class="footer-hashtag lno">#LadiesNightOut</span>
     </div>
   </div>
 </footer>
@@ -1670,11 +1570,9 @@ footer {
   function tickAll() {
     const tuesdayTarget = getRollingWeeklyTarget(2026, 3, 28, 19);   // Apr 28, 2026 then every Tuesday
     const wednesdayTarget = getRollingWeeklyTarget(2026, 3, 29, 19); // Apr 29, 2026 then every Wednesday
-    const thursdayTarget = getRollingWeeklyTarget(2026, 3, 23, 19);  // Apr 23, 2026 then every Thursday
 
     updateCountdown('tue', tuesdayTarget, 'flash-tue');
     updateCountdown('wed', wednesdayTarget, 'flash-wed');
-    updateCountdown('lno', thursdayTarget, 'flash-lno');
   }
 
   tickAll();
